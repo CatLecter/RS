@@ -1,0 +1,32 @@
+...се так вроде)
+
+@startuml
+!theme materia
+skinparam componentStyle uml1
+skinparam backgroundColor MOTIVATION
+skinparam linetype ortho
+skinparam actorStyle awesome
+skinparam defaultTextAlignment center
+skinparam classarrowcolor Black
+skinparam SequenceMessageAlign reverseDirection
+
+title [ARCH]: Recommendation system
+
+actor Клиент as Client
+component FastAPI
+component RecomendationSystem <<Раз в неделю переобучается. \n В течении недели по запросу выдает \n рекомендации для пользователей>>
+component Nginx
+database ClickHouse <<Хранение оценок фильмов пользователями>>
+database Cash_RS <<Кэш рекомендаций для пользователей>>
+database db <<Хранение просчитанных рекомендаций на неделю>>
+Client -->Nginx: "Запрос начальной \n страницы сайта"
+Nginx --> Client: Страница (Json)
+Nginx --> FastAPI: Запрос предложений \n фильмов для пользователя
+FastAPI --> Nginx: данные для вывода пользователю
+FastAPI --> db: Запрос рекомендаций
+db --> FastAPI:Рекомендации
+RecomendationSystem -down--> db: Сохранение рекомендаций для \n пользователей после рассчета \n раз в неделю
+FastAPI -down--> Cash_RS: Запрос рекомендаций из кэша \n Если нет, положить рекомендацию в кээш
+Cash_RS --> FastAPI: Закэшированные рекомендации
+ClickHouse -down--> RecomendationSystem: (раз в неделю) \n выгрузка данных для обучения
+@enduml

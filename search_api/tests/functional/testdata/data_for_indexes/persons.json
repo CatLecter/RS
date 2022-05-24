@@ -1,0 +1,877 @@
+[
+    {
+        "uuid": "045dfb5c-58ae-4ec8-b2d3-d4070d43ccf9",
+        "full_name": "Regina Myannik",
+        "birth_date": "1954-08-25",
+        "film_works": [
+            {
+                "uuid": "a8f8d211-2ed5-4155-913d-2dbd52fa016b",
+                "title": "Dura",
+                "imdb_rating": "4.3",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "0c80fef2-0b12-4a1a-83d1-eb807d6a0cfc",
+        "full_name": "Dmitriy Pevtsov",
+        "birth_date": "1993-12-14",
+        "film_works": [
+            {
+                "uuid": "3a87d590-7250-4e0d-b89f-c62aa5a5c868",
+                "title": "Львиная доля",
+                "imdb_rating": "4",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "0d3f19e6-c4d2-4610-a2a7-1777dab77bb0",
+        "full_name": "Susan Merson",
+        "birth_date": "1962-02-22",
+        "film_works": [
+            {
+                "uuid": "40e88b44-ed99-4b59-b1ce-6cd712b4547c",
+                "title": "Terminator 3: Rise of the Machines",
+                "imdb_rating": "5.9",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "10e79661-7670-46d0-8104-5a846c9c7062",
+        "full_name": "Chopper Bernet",
+        "birth_date": "1988-01-24",
+        "film_works": [
+            {
+                "uuid": "40e88b44-ed99-4b59-b1ce-6cd712b4547c",
+                "title": "Terminator 3: Rise of the Machines",
+                "imdb_rating": "5.9",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "12cda55f-de20-4780-9c83-c58d19339d58",
+        "full_name": "Dick Miller",
+        "birth_date": "1958-10-31",
+        "film_works": [
+            {
+                "uuid": "c3565f1d-1bda-4d13-afc1-3e734ce48c7d",
+                "title": "The Terminator",
+                "imdb_rating": "7.4",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "17108d0b-0566-42b8-941a-83e63d784ef6",
+        "full_name": "Igor Gasparyan",
+        "birth_date": "1971-07-18",
+        "film_works": [
+            {
+                "uuid": "6188ff7f-5717-45bf-983f-c9f6aa0cf724",
+                "title": "Chelovek, kotoryy znal vsyo",
+                "imdb_rating": "6",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "1c2cef19-a08d-4666-98a8-2c1616593982",
+        "full_name": "Dmytro Khaladgi",
+        "birth_date": "1957-10-31",
+        "film_works": [
+            {
+                "uuid": "679e1fc8-bdbb-4298-b007-c76cf7c5e294",
+                "title": "Іван Сила",
+                "imdb_rating": "7",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "1dc78667-3ba3-4845-9012-986dceedd05f",
+        "full_name": "Tatyana Lyutaeva",
+        "birth_date": "2000-06-28",
+        "film_works": [
+            {
+                "uuid": "a8f8d211-2ed5-4155-913d-2dbd52fa016b",
+                "title": "Dura",
+                "imdb_rating": "4.3",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "1e4f79c1-ea8b-4582-8218-dd69b01bdb53",
+        "full_name": "Игорь Сахновский",
+        "birth_date": "1973-03-01",
+        "film_works": [
+            {
+                "uuid": "6188ff7f-5717-45bf-983f-c9f6aa0cf724",
+                "title": "Chelovek, kotoryy znal vsyo",
+                "imdb_rating": "6",
+                "role": "writer"
+            }
+        ]
+    },
+    {
+        "uuid": "207483e6-a00c-4db7-a6f6-bb5a6c9bdfd4",
+        "full_name": "Daniel D. Lee",
+        "birth_date": "1988-01-23",
+        "film_works": [
+            {
+                "uuid": "71fd84b4-5391-473b-a7bb-e87aee94e4af",
+                "title": "Star Trek",
+                "imdb_rating": "7.4",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "240c4292-8201-4d6a-9ea8-679369b6db6e",
+        "full_name": "Vladlen Bakhnov",
+        "birth_date": "1987-01-18",
+        "film_works": [
+            {
+                "uuid": "6ca6dcd7-cd61-4db1-b9c3-efa531d5ea9a",
+                "title": "Ivan Vasilyevich Changes His Profession",
+                "imdb_rating": "7.8",
+                "role": "writer"
+            }
+        ]
+    },
+    {
+        "uuid": "26e47942-88a0-4a14-afff-929e97831b6e",
+        "full_name": "Boris Barsky",
+        "birth_date": "1989-04-01",
+        "film_works": [
+            {
+                "uuid": "679e1fc8-bdbb-4298-b007-c76cf7c5e294",
+                "title": "Іван Сила",
+                "imdb_rating": "7",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "29e4b601-7d1a-4d37-86d3-bff0fe18979b",
+        "full_name": "Dmitriy Shevchenko",
+        "birth_date": "1997-04-01",
+        "film_works": [
+            {
+                "uuid": "a8f8d211-2ed5-4155-913d-2dbd52fa016b",
+                "title": "Dura",
+                "imdb_rating": "4.3",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "2ada4a49-dfc5-460b-9c1d-af0777bcad53",
+        "full_name": "John E. Bristol",
+        "birth_date": "1991-12-18",
+        "film_works": [
+            {
+                "uuid": "c3565f1d-1bda-4d13-afc1-3e734ce48c7d",
+                "title": "The Terminator",
+                "imdb_rating": "7.4",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "2de6140b-1ded-476c-8cce-2dd43e7af7b2",
+        "full_name": "James Derrick",
+        "birth_date": "1971-11-24",
+        "film_works": [
+            {
+                "uuid": "6188ff7f-5717-45bf-983f-c9f6aa0cf724",
+                "title": "Chelovek, kotoryy znal vsyo",
+                "imdb_rating": "6",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "2f9ca01e-c693-437b-991f-b224e17340ee",
+        "full_name": "Aleksandr Demyanenko",
+        "birth_date": "1966-09-08",
+        "film_works": [
+            {
+                "uuid": "49243906-71ce-4f30-b5e1-adeea47bdce6",
+                "title": "Operation Y and Other Shurik's Adventures",
+                "imdb_rating": "7.5",
+                "role": "actor"
+            },
+            {
+                "uuid": "6ca6dcd7-cd61-4db1-b9c3-efa531d5ea9a",
+                "title": "Ivan Vasilyevich Changes His Profession",
+                "imdb_rating": "7.8",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "32a84ce1-b9de-4f86-8c22-f528ae0bd3a2",
+        "full_name": "Ivanna Sakhno",
+        "birth_date": "1967-10-03",
+        "film_works": [
+            {
+                "uuid": "679e1fc8-bdbb-4298-b007-c76cf7c5e294",
+                "title": "Іван Сила",
+                "imdb_rating": "7",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "32b82fd1-ce06-4801-a610-99962bec55af",
+        "full_name": "Anna Katarina",
+        "birth_date": "1965-05-24",
+        "film_works": [
+            {
+                "uuid": "71fd84b4-5391-473b-a7bb-e87aee94e4af",
+                "title": "Star Trek",
+                "imdb_rating": "7.4",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "3499da28-d6ba-4d4a-8f7e-81c09c6b0912",
+        "full_name": "J. Randolph Harrison",
+        "birth_date": "1955-06-07",
+        "film_works": [
+            {
+                "uuid": "c3565f1d-1bda-4d13-afc1-3e734ce48c7d",
+                "title": "The Terminator",
+                "imdb_rating": "7.4",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "4364fa0f-95cc-48dc-80c7-5eac6ba44997",
+        "full_name": "Jolene Kay",
+        "birth_date": "1987-09-22",
+        "film_works": [
+            {
+                "uuid": "71fd84b4-5391-473b-a7bb-e87aee94e4af",
+                "title": "Star Trek",
+                "imdb_rating": "7.4",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "4864b1b9-05a2-468a-bb23-22323896c0e1",
+        "full_name": "Robert Winley",
+        "birth_date": "1969-10-31",
+        "film_works": [
+            {
+                "uuid": "bfac159c-a7ec-48f1-b28c-3e914f40fc12",
+                "title": "Terminator 2: Judgment Day",
+                "imdb_rating": "7.7",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "4ed91aa7-6df2-45c8-ac21-383af5a3cc58",
+        "full_name": "Vladimir Mirzoyev",
+        "birth_date": "1988-07-13",
+        "film_works": [
+            {
+                "uuid": "6188ff7f-5717-45bf-983f-c9f6aa0cf724",
+                "title": "Chelovek, kotoryy znal vsyo",
+                "imdb_rating": "6",
+                "role": "director"
+            },
+            {
+                "uuid": "6188ff7f-5717-45bf-983f-c9f6aa0cf724",
+                "title": "Chelovek, kotoryy znal vsyo",
+                "imdb_rating": "6",
+                "role": "writer"
+            }
+        ]
+    },
+    {
+        "uuid": "66b73989-3982-4ce8-af5c-9e438315338e",
+        "full_name": "Yuriy Yakovlev",
+        "birth_date": "1995-12-09",
+        "film_works": [
+            {
+                "uuid": "6ca6dcd7-cd61-4db1-b9c3-efa531d5ea9a",
+                "title": "Ivan Vasilyevich Changes His Profession",
+                "imdb_rating": "7.8",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "6b6d07a1-ffef-4bc6-a993-a48c335d98fb",
+        "full_name": "Dmitriy Maryanov",
+        "birth_date": "1968-01-01",
+        "film_works": [
+            {
+                "uuid": "3a87d590-7250-4e0d-b89f-c62aa5a5c868",
+                "title": "Львиная доля",
+                "imdb_rating": "4",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "772967ef-1664-410a-8bf6-95e23b865739",
+        "full_name": "Igor Zolotovitsky",
+        "birth_date": "1970-11-11",
+        "film_works": [
+            {
+                "uuid": "a8f8d211-2ed5-4155-913d-2dbd52fa016b",
+                "title": "Dura",
+                "imdb_rating": "4.3",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "7cb8b412-4533-4c90-a438-77bf274b4d88",
+        "full_name": "Natalya Kustinskaya",
+        "birth_date": "1963-10-09",
+        "film_works": [
+            {
+                "uuid": "6ca6dcd7-cd61-4db1-b9c3-efa531d5ea9a",
+                "title": "Ivan Vasilyevich Changes His Profession",
+                "imdb_rating": "7.8",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "7d2a86c6-fdc5-4796-982e-58ce7de7b269",
+        "full_name": "Igor Pismennyy",
+        "birth_date": "1994-02-14",
+        "film_works": [
+            {
+                "uuid": "679e1fc8-bdbb-4298-b007-c76cf7c5e294",
+                "title": "Іван Сила",
+                "imdb_rating": "7",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "7f6f74dd-3af4-4a80-b3bb-6157eed8aea1",
+        "full_name": "Olga Volkova",
+        "birth_date": "1968-02-17",
+        "film_works": [
+            {
+                "uuid": "a8f8d211-2ed5-4155-913d-2dbd52fa016b",
+                "title": "Dura",
+                "imdb_rating": "4.3",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "7ffe128a-2d00-4ffd-b81d-f37ac815ae17",
+        "full_name": "Jonathan Mostow",
+        "birth_date": "1992-02-04",
+        "film_works": [
+            {
+                "uuid": "40e88b44-ed99-4b59-b1ce-6cd712b4547c",
+                "title": "Terminator 3: Rise of the Machines",
+                "imdb_rating": "5.9",
+                "role": "director"
+            }
+        ]
+    },
+    {
+        "uuid": "7fff2ad3-ad14-46b1-b74c-ff7d4a9cb8de",
+        "full_name": "Vladimir Basov",
+        "birth_date": "1976-02-24",
+        "film_works": [
+            {
+                "uuid": "49243906-71ce-4f30-b5e1-adeea47bdce6",
+                "title": "Operation Y and Other Shurik's Adventures",
+                "imdb_rating": "7.5",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "8031604e-6261-4444-ac23-f340cff69f67",
+        "full_name": "Nancy Fish",
+        "birth_date": "1984-06-23",
+        "film_works": [
+            {
+                "uuid": "bfac159c-a7ec-48f1-b28c-3e914f40fc12",
+                "title": "Terminator 2: Judgment Day",
+                "imdb_rating": "7.7",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "846e6485-9869-431c-9eae-e86c10a6d310",
+        "full_name": "Steve Wharton",
+        "birth_date": "1955-11-02",
+        "film_works": [
+            {
+                "uuid": "71fd84b4-5391-473b-a7bb-e87aee94e4af",
+                "title": "Star Trek",
+                "imdb_rating": "7.4",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "85550065-853c-453c-9023-f6bc4717ef19",
+        "full_name": "Evgeniy Redko",
+        "birth_date": "1974-11-30",
+        "film_works": [
+            {
+                "uuid": "a8f8d211-2ed5-4155-913d-2dbd52fa016b",
+                "title": "Dura",
+                "imdb_rating": "4.3",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "898e3926-cb57-4a00-88be-b24670a3b9fb",
+        "full_name": "Aleksandr Baluev",
+        "birth_date": "1989-06-22",
+        "film_works": [
+            {
+                "uuid": "a8f8d211-2ed5-4155-913d-2dbd52fa016b",
+                "title": "Dura",
+                "imdb_rating": "4.3",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "89c87a21-548a-4fbb-9bda-5ff3e5b9fe34",
+        "full_name": "Yuri Belyayev",
+        "birth_date": "1979-08-18",
+        "film_works": [
+            {
+                "uuid": "3a87d590-7250-4e0d-b89f-c62aa5a5c868",
+                "title": "Львиная доля",
+                "imdb_rating": "4",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "8c4dcae0-261a-42e8-a01b-75acfcb0b145",
+        "full_name": "Ekaterina Guseva",
+        "birth_date": "1963-05-10",
+        "film_works": [
+            {
+                "uuid": "6188ff7f-5717-45bf-983f-c9f6aa0cf724",
+                "title": "Chelovek, kotoryy znal vsyo",
+                "imdb_rating": "6",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "964ba2e5-6b01-46a2-a7ce-e970a3a52fce",
+        "full_name": "Natalya Krachkovskaya",
+        "birth_date": "1987-07-02",
+        "film_works": [
+            {
+                "uuid": "6ca6dcd7-cd61-4db1-b9c3-efa531d5ea9a",
+                "title": "Ivan Vasilyevich Changes His Profession",
+                "imdb_rating": "7.8",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "96ad89ee-e8ab-4a43-9ebf-8c9fecb50f10",
+        "full_name": "Bogdan Benyuk",
+        "birth_date": "1960-10-10",
+        "film_works": [
+            {
+                "uuid": "679e1fc8-bdbb-4298-b007-c76cf7c5e294",
+                "title": "Іван Сила",
+                "imdb_rating": "7",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "988e35fc-ebc2-48cf-8a0e-651b65b54945",
+        "full_name": "Владимир Брагин",
+        "birth_date": "1985-08-23",
+        "film_works": [
+            {
+                "uuid": "3a87d590-7250-4e0d-b89f-c62aa5a5c868",
+                "title": "Львиная доля",
+                "imdb_rating": "4",
+                "role": "writer"
+            }
+        ]
+    },
+    {
+        "uuid": "9f515a92-9aa7-4e51-aacd-6c5f8ecd2ee5",
+        "full_name": "Nana Hill",
+        "birth_date": "2000-01-17",
+        "film_works": [
+            {
+                "uuid": "71fd84b4-5391-473b-a7bb-e87aee94e4af",
+                "title": "Star Trek",
+                "imdb_rating": "7.4",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "a3ba9b10-6052-4f6c-801d-fa931e770dc6",
+        "full_name": "Chulpan Khamatova",
+        "birth_date": "1960-09-04",
+        "film_works": [
+            {
+                "uuid": "3a87d590-7250-4e0d-b89f-c62aa5a5c868",
+                "title": "Львиная доля",
+                "imdb_rating": "4",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "a9115468-8cb5-481b-b384-5b44e4d21490",
+        "full_name": "Savely Kramarov",
+        "birth_date": "1999-04-24",
+        "film_works": [
+            {
+                "uuid": "6ca6dcd7-cd61-4db1-b9c3-efa531d5ea9a",
+                "title": "Ivan Vasilyevich Changes His Profession",
+                "imdb_rating": "7.8",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "af880da3-cb79-4f10-a199-9527dbf72c37",
+        "full_name": "Aleksandr Muratov",
+        "birth_date": "1984-03-15",
+        "film_works": [
+            {
+                "uuid": "3a87d590-7250-4e0d-b89f-c62aa5a5c868",
+                "title": "Львиная доля",
+                "imdb_rating": "4",
+                "role": "director"
+            }
+        ]
+    },
+    {
+        "uuid": "b56f82a4-f897-4273-8754-01e992ee0bd0",
+        "full_name": "Larisa Eryomina",
+        "birth_date": "2001-06-29",
+        "film_works": [
+            {
+                "uuid": "6ca6dcd7-cd61-4db1-b9c3-efa531d5ea9a",
+                "title": "Ivan Vasilyevich Changes His Profession",
+                "imdb_rating": "7.8",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "b92425b4-4fc3-4fcb-ab19-c0f568f3573d",
+        "full_name": "Georgiy Vitsin",
+        "birth_date": "1986-10-12",
+        "film_works": [
+            {
+                "uuid": "49243906-71ce-4f30-b5e1-adeea47bdce6",
+                "title": "Operation Y and Other Shurik's Adventures",
+                "imdb_rating": "7.5",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "bf039d04-c5c2-4dd4-93d3-379129a126cf",
+        "full_name": "Oksana Korostyshevskaya",
+        "birth_date": "1964-08-03",
+        "film_works": [
+            {
+                "uuid": "a8f8d211-2ed5-4155-913d-2dbd52fa016b",
+                "title": "Dura",
+                "imdb_rating": "4.3",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "c4c32356-8eab-4882-a6b8-d191a7dfba74",
+        "full_name": "Leonid Kuravlyov",
+        "birth_date": "1999-12-31",
+        "film_works": [
+            {
+                "uuid": "6ca6dcd7-cd61-4db1-b9c3-efa531d5ea9a",
+                "title": "Ivan Vasilyevich Changes His Profession",
+                "imdb_rating": "7.8",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "c5266621-d024-419e-91e2-7ae04ac75557",
+        "full_name": "Bill Paxton",
+        "birth_date": "1976-03-16",
+        "film_works": [
+            {
+                "uuid": "c3565f1d-1bda-4d13-afc1-3e734ce48c7d",
+                "title": "The Terminator",
+                "imdb_rating": "7.4",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "c56deb48-3b52-41a2-90fb-58ceaf28a173",
+        "full_name": "Viktor Pavlov",
+        "birth_date": "1955-12-14",
+        "film_works": [
+            {
+                "uuid": "49243906-71ce-4f30-b5e1-adeea47bdce6",
+                "title": "Operation Y and Other Shurik's Adventures",
+                "imdb_rating": "7.5",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "c65a6098-d0c7-400e-9d0f-335477a879c3",
+        "full_name": "Maxim Korostyshevsky",
+        "birth_date": "1991-12-08",
+        "film_works": [
+            {
+                "uuid": "a8f8d211-2ed5-4155-913d-2dbd52fa016b",
+                "title": "Dura",
+                "imdb_rating": "4.3",
+                "role": "director"
+            }
+        ]
+    },
+    {
+        "uuid": "cb06f9f9-36c3-47be-a4c4-fccb55e82f90",
+        "full_name": "Vasyl Virastyuk",
+        "birth_date": "1980-02-09",
+        "film_works": [
+            {
+                "uuid": "679e1fc8-bdbb-4298-b007-c76cf7c5e294",
+                "title": "Іван Сила",
+                "imdb_rating": "7",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "cd72e685-28c7-4cf8-a351-0f14d568d7c0",
+        "full_name": "Egor Beroev",
+        "birth_date": "1964-04-16",
+        "film_works": [
+            {
+                "uuid": "6188ff7f-5717-45bf-983f-c9f6aa0cf724",
+                "title": "Chelovek, kotoryy znal vsyo",
+                "imdb_rating": "6",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "d0dbd553-9623-4a2f-bc0c-532180bba230",
+        "full_name": "Nikolay Chindyaykin",
+        "birth_date": "1995-02-11",
+        "film_works": [
+            {
+                "uuid": "3a87d590-7250-4e0d-b89f-c62aa5a5c868",
+                "title": "Львиная доля",
+                "imdb_rating": "4",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "d0dd7324-eef2-4a70-95b1-892c9132efd2",
+        "full_name": "Mikhail Bulgakov",
+        "birth_date": "2000-11-19",
+        "film_works": [
+            {
+                "uuid": "6ca6dcd7-cd61-4db1-b9c3-efa531d5ea9a",
+                "title": "Ivan Vasilyevich Changes His Profession",
+                "imdb_rating": "7.8",
+                "role": "writer"
+            }
+        ]
+    },
+    {
+        "uuid": "d38503d6-83a0-44d5-975b-aa61c680e04a",
+        "full_name": "Olga Sumskaya",
+        "birth_date": "1996-02-17",
+        "film_works": [
+            {
+                "uuid": "679e1fc8-bdbb-4298-b007-c76cf7c5e294",
+                "title": "Іван Сила",
+                "imdb_rating": "7",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "d3e68ac0-22ff-428d-9b2d-d1173af6371b",
+        "full_name": "Vladimir Vladislavskiy",
+        "birth_date": "1970-08-31",
+        "film_works": [
+            {
+                "uuid": "49243906-71ce-4f30-b5e1-adeea47bdce6",
+                "title": "Operation Y and Other Shurik's Adventures",
+                "imdb_rating": "7.5",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "d784531a-05b7-4822-a995-f283fc6a898c",
+        "full_name": "Viktor Andrienko",
+        "birth_date": "1964-07-28",
+        "film_works": [
+            {
+                "uuid": "679e1fc8-bdbb-4298-b007-c76cf7c5e294",
+                "title": "Іван Сила",
+                "imdb_rating": "7",
+                "role": "actor"
+            },
+            {
+                "uuid": "679e1fc8-bdbb-4298-b007-c76cf7c5e294",
+                "title": "Іван Сила",
+                "imdb_rating": "7",
+                "role": "director"
+            }
+        ]
+    },
+    {
+        "uuid": "d897757e-8262-4b2a-aebd-5e9255ee16fa",
+        "full_name": "Sergei Filippov",
+        "birth_date": "1980-02-12",
+        "film_works": [
+            {
+                "uuid": "6ca6dcd7-cd61-4db1-b9c3-efa531d5ea9a",
+                "title": "Ivan Vasilyevich Changes His Profession",
+                "imdb_rating": "7.8",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "e1afd95c-b547-41a5-8697-9999fa697686",
+        "full_name": "Arnold Schwarzenegger",
+        "birth_date": "1952-04-23",
+        "film_works": [
+            {
+                "uuid": "40e88b44-ed99-4b59-b1ce-6cd712b4547c",
+                "title": "Terminator 3: Rise of the Machines",
+                "imdb_rating": "5.9",
+                "role": "actor"
+            },
+            {
+                "uuid": "bfac159c-a7ec-48f1-b28c-3e914f40fc12",
+                "title": "Terminator 2: Judgment Day",
+                "imdb_rating": "7.7",
+                "role": "actor"
+            },
+            {
+                "uuid": "c3565f1d-1bda-4d13-afc1-3e734ce48c7d",
+                "title": "The Terminator",
+                "imdb_rating": "7.4",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "e27ebcd7-003e-4a4d-9e5c-c38d282ff141",
+        "full_name": "Dan Stanton",
+        "birth_date": "1964-01-31",
+        "film_works": [
+            {
+                "uuid": "bfac159c-a7ec-48f1-b28c-3e914f40fc12",
+                "title": "Terminator 2: Judgment Day",
+                "imdb_rating": "7.7",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "e47bfa75-dc37-4db8-b1c3-1e0f0edae947",
+        "full_name": "Oleg Primogenov",
+        "birth_date": "1955-03-17",
+        "film_works": [
+            {
+                "uuid": "679e1fc8-bdbb-4298-b007-c76cf7c5e294",
+                "title": "Іван Сила",
+                "imdb_rating": "7",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "eab7ff66-3e07-42e0-b708-7b1bc7ccfb8c",
+        "full_name": "Leonard Nimoy",
+        "birth_date": "1971-09-27",
+        "film_works": [
+            {
+                "uuid": "71fd84b4-5391-473b-a7bb-e87aee94e4af",
+                "title": "Star Trek",
+                "imdb_rating": "7.4",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "ee1bbda3-8c15-4669-a49a-93aacce929f6",
+        "full_name": "Brian Thompson",
+        "birth_date": "1999-02-03",
+        "film_works": [
+            {
+                "uuid": "c3565f1d-1bda-4d13-afc1-3e734ce48c7d",
+                "title": "The Terminator",
+                "imdb_rating": "7.4",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "f4bee4d2-5c8a-42cc-9dd7-f60a32028230",
+        "full_name": "David Andrews",
+        "birth_date": "1967-07-12",
+        "film_works": [
+            {
+                "uuid": "40e88b44-ed99-4b59-b1ce-6cd712b4547c",
+                "title": "Terminator 3: Rise of the Machines",
+                "imdb_rating": "5.9",
+                "role": "actor"
+            }
+        ]
+    },
+    {
+        "uuid": "f676975e-a319-42d4-85e4-4485090e1937",
+        "full_name": "Vladimir Etush",
+        "birth_date": "1953-03-05",
+        "film_works": [
+            {
+                "uuid": "6ca6dcd7-cd61-4db1-b9c3-efa531d5ea9a",
+                "title": "Ivan Vasilyevich Changes His Profession",
+                "imdb_rating": "7.8",
+                "role": "actor"
+            }
+        ]
+    }
+]

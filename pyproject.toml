@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "rs"
+version = "0.1.0"
+description = "Recommendation System"
+authors = ["Vasilii Safronov <vasi1988@mail.ru>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+uvicorn = "^0.17.6"
+uvloop = "^0.16.0"
+aiohttp = "^3.8.1"
+aioredis = "^2.0.1"
+backoff = "^2.0.1"
+elasticsearch = {version = "~7.17", extras = ["async"]}
+elasticsearch-dsl = "^7.4.0"
+fastapi = "^0.78.0"
+python-jose = "^3.3.0"
+orjson = "^3.6.8"
+pydantic = "^1.9.1"
+psycopg2-binary = "^2.9.3"
+Django = "~3.2"
+gunicorn = "^20.1.0"
+python-dotenv = "^0.20.0"
+pymongo = "^4.1.1"
+loguru = "^0.6.0"
+celery = {extras = ["amqp"], version = "^5.2.6"}
+aiokafka = "^0.7.2"
+sentry-sdk = "^1.5.12"
+
+[tool.poetry.dev-dependencies]
+black = "^22.3.0"
+flake8 = "^4.0.1"
+isort = "^5.10.1"
+pre-commit = "^2.19.0"
+django-debug-toolbar = "^3.4.0"
+django-extensions = "^3.1.5"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

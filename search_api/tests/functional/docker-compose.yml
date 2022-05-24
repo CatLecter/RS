@@ -1,0 +1,60 @@
+version: '3'
+
+services:
+  tests:
+    image: python:3.9.10
+    container_name: tests
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - ELASTIC_HOST=http://elastic
+      - ELASTIC_PORT=9200
+      - SERVICE_URL=api
+      - SERVICE_PORT=8000
+      - PYTHONDONTWRITEBYTECODE=1
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      - api
+      - redis
+      - elastic
+    volumes:
+      - ../.:/tests/
+    entrypoint: >
+      sh -c "pip install -r /tests/functional/requirements.txt > /dev/null
+      && python3 /tests/functional/utils/wait_for_redis.py
+      && python3 /tests/functional/utils/wait_for_es.py
+      && pytest /tests/functional/src"
+
+  api:
+    build:
+      context: ../../
+      dockerfile: deploy/api/Dockerfile
+    environment:
+      - PROJECT_NAME=movies
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - ELASTIC_HOST=http://elastic
+      - ELASTIC_PORT=9200
+    depends_on:
+      - redis
+      - elastic
+    expose:
+      - 8000
+    ports:
+      - "8000:8000"
+
+  elastic:
+    image: elasticsearch:7.7.0
+    environment:
+      - discovery.type=single-node
+    expose:
+      - 9200
+    ports:
+      - "9200:9200"
+
+  redis:
+    image: redis:6.2.6-alpine
+    expose:
+      - 6379
+    ports:
+      - "6379:6379"

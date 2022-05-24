@@ -1,0 +1,518 @@
+[
+    {
+        "uuid": "3a87d590-7250-4e0d-b89f-c62aa5a5c868",
+        "imdb_rating": 4,
+        "genres": [],
+        "title": "Львиная доля",
+        "description": "",
+        "directors_names": "Aleksandr Muratov",
+        "actors_names": "Dmitriy Pevtsov,Dmitriy Maryanov,Yuri Belyayev,Chulpan Khamatova,Nikolay Chindyaykin",
+        "writers_names": "Владимир Брагин",
+        "directors": [
+            {
+                "uuid": "af880da3-cb79-4f10-a199-9527dbf72c37",
+                "full_name": "Aleksandr Muratov"
+            }
+        ],
+        "actors": [
+            {
+                "uuid": "0c80fef2-0b12-4a1a-83d1-eb807d6a0cfc",
+                "full_name": "Dmitriy Pevtsov"
+            },
+            {
+                "uuid": "6b6d07a1-ffef-4bc6-a993-a48c335d98fb",
+                "full_name": "Dmitriy Maryanov"
+            },
+            {
+                "uuid": "89c87a21-548a-4fbb-9bda-5ff3e5b9fe34",
+                "full_name": "Yuri Belyayev"
+            },
+            {
+                "uuid": "a3ba9b10-6052-4f6c-801d-fa931e770dc6",
+                "full_name": "Chulpan Khamatova"
+            },
+            {
+                "uuid": "d0dbd553-9623-4a2f-bc0c-532180bba230",
+                "full_name": "Nikolay Chindyaykin"
+            }
+        ],
+        "writers": [
+            {
+                "uuid": "988e35fc-ebc2-48cf-8a0e-651b65b54945",
+                "full_name": "Владимир Брагин"
+            }
+        ]
+    },
+    {
+        "uuid": "40e88b44-ed99-4b59-b1ce-6cd712b4547c",
+        "imdb_rating": 5.9,
+        "genres": [
+            {
+                "uuid": "374f469f-e3e0-4eda-9a6b-b5639dfcfbd4",
+                "name": "Thriller"
+            },
+            {
+                "uuid": "485e788e-90b5-4afd-8b28-0f30cd16d4d3",
+                "name": "Science Fiction"
+            },
+            {
+                "uuid": "8bb01460-217f-471c-be0a-e8fa1ceac2cc",
+                "name": "Action"
+            }
+        ],
+        "title": "Terminator 3: Rise of the Machines",
+        "description": "It's been 10 years since John Connor saved Earth from Judgment Day, and he's now living under the radar, steering clear of using anything Skynet can trace. That is, until he encounters T-X, a robotic assassin ordered to finish what T-1000 started. Good thing Connor's former nemesis, the Terminator, is back to aid the now-adult Connor … just like he promised.",
+        "directors_names": "Jonathan Mostow",
+        "actors_names": "Susan Merson,Chopper Bernet,Arnold Schwarzenegger,David Andrews",
+        "writers_names": "",
+        "directors": [
+            {
+                "uuid": "7ffe128a-2d00-4ffd-b81d-f37ac815ae17",
+                "full_name": "Jonathan Mostow"
+            }
+        ],
+        "actors": [
+            {
+                "uuid": "0d3f19e6-c4d2-4610-a2a7-1777dab77bb0",
+                "full_name": "Susan Merson"
+            },
+            {
+                "uuid": "10e79661-7670-46d0-8104-5a846c9c7062",
+                "full_name": "Chopper Bernet"
+            },
+            {
+                "uuid": "e1afd95c-b547-41a5-8697-9999fa697686",
+                "full_name": "Arnold Schwarzenegger"
+            },
+            {
+                "uuid": "f4bee4d2-5c8a-42cc-9dd7-f60a32028230",
+                "full_name": "David Andrews"
+            }
+        ],
+        "writers": []
+    },
+    {
+        "uuid": "49243906-71ce-4f30-b5e1-adeea47bdce6",
+        "imdb_rating": 7.5,
+        "genres": [
+            {
+                "uuid": "21b8c26b-c023-43ab-95da-cb8f8c773fe6",
+                "name": "Comedy"
+            }
+        ],
+        "title": "Operation Y and Other Shurik's Adventures",
+        "description": "The film consists of three independent parts: \"Workmate\", \"Déjà vu\" and \"Operation Y\". The plot follows the adventures of Shurik (alternative spelling — Shourick), the naive and nerdy Soviet student who often gets into ludicrous situations but always finds a way out very neatly.  \"Operation Y and Shurik's Other Adventures\" was a hit movie and became the leader of Soviet film distribution in 1965.",
+        "directors_names": "",
+        "actors_names": "Aleksandr Demyanenko,Vladimir Basov,Georgiy Vitsin,Viktor Pavlov,Vladimir Vladislavskiy",
+        "writers_names": "",
+        "directors": [],
+        "actors": [
+            {
+                "uuid": "2f9ca01e-c693-437b-991f-b224e17340ee",
+                "full_name": "Aleksandr Demyanenko"
+            },
+            {
+                "uuid": "7fff2ad3-ad14-46b1-b74c-ff7d4a9cb8de",
+                "full_name": "Vladimir Basov"
+            },
+            {
+                "uuid": "b92425b4-4fc3-4fcb-ab19-c0f568f3573d",
+                "full_name": "Georgiy Vitsin"
+            },
+            {
+                "uuid": "c56deb48-3b52-41a2-90fb-58ceaf28a173",
+                "full_name": "Viktor Pavlov"
+            },
+            {
+                "uuid": "d3e68ac0-22ff-428d-9b2d-d1173af6371b",
+                "full_name": "Vladimir Vladislavskiy"
+            }
+        ],
+        "writers": []
+    },
+    {
+        "uuid": "6188ff7f-5717-45bf-983f-c9f6aa0cf724",
+        "imdb_rating": 6,
+        "genres": [
+            {
+                "uuid": "21b8c26b-c023-43ab-95da-cb8f8c773fe6",
+                "name": "Comedy"
+            },
+            {
+                "uuid": "485e788e-90b5-4afd-8b28-0f30cd16d4d3",
+                "name": "Science Fiction"
+            },
+            {
+                "uuid": "72e63ac7-a953-4322-9f70-d5dc2e675fc7",
+                "name": "Drama"
+            },
+            {
+                "uuid": "c15521b1-b3dc-450a-9daa-37e51b591d75",
+                "name": "Fantasy"
+            }
+        ],
+        "title": "Chelovek, kotoryy znal vsyo",
+        "description": "A man attempts to commit suicide and, as a result, unexpectedly acquires the phenomenal ability to immediately answer any question. A modest and harmless individual, he becomes a target for all - from women to criminal bosses and even foreign special services. Some try to use him, others try to murder him, but the ordinary man keeps living according to the dictates of his own conscience.",
+        "directors_names": "Vladimir Mirzoyev",
+        "actors_names": "Igor Gasparyan,James Derrick,Ekaterina Guseva,Egor Beroev",
+        "writers_names": "Игорь Сахновский,Vladimir Mirzoyev",
+        "directors": [
+            {
+                "uuid": "4ed91aa7-6df2-45c8-ac21-383af5a3cc58",
+                "full_name": "Vladimir Mirzoyev"
+            }
+        ],
+        "actors": [
+            {
+                "uuid": "17108d0b-0566-42b8-941a-83e63d784ef6",
+                "full_name": "Igor Gasparyan"
+            },
+            {
+                "uuid": "2de6140b-1ded-476c-8cce-2dd43e7af7b2",
+                "full_name": "James Derrick"
+            },
+            {
+                "uuid": "8c4dcae0-261a-42e8-a01b-75acfcb0b145",
+                "full_name": "Ekaterina Guseva"
+            },
+            {
+                "uuid": "cd72e685-28c7-4cf8-a351-0f14d568d7c0",
+                "full_name": "Egor Beroev"
+            }
+        ],
+        "writers": [
+            {
+                "uuid": "1e4f79c1-ea8b-4582-8218-dd69b01bdb53",
+                "full_name": "Игорь Сахновский"
+            },
+            {
+                "uuid": "4ed91aa7-6df2-45c8-ac21-383af5a3cc58",
+                "full_name": "Vladimir Mirzoyev"
+            }
+        ]
+    },
+    {
+        "uuid": "679e1fc8-bdbb-4298-b007-c76cf7c5e294",
+        "imdb_rating": 7,
+        "genres": [],
+        "title": "Іван Сила",
+        "description": "\"Strong Ivan\" is a film telling an outstanding life story of Ivan Firtsak who was born in June, 1899 in a Ukrainian village Bilky, Irshava district in Zakarpattia Oblast. At the age of 18 he became a performer with a Czechoslovak circus and travelled to 64 countries of the world, astonishing everybody with his victories. He was a weightlifting champion of Czechoslovakia, a bodybuilding champion of Europe. He earned the nickname Strong Ivan Croton for his incredible strength. Ivan Firtsak won a great number of single combats with famous wrestlers of the world. From hands of the Queen of England he received a helmet and a belt decorated with cold and diamonds. American press called him the strongest man of the XX century. In 1937 in the prime of his fame he came back to the homeland.",
+        "directors_names": "Viktor Andrienko",
+        "actors_names": "Dmytro Khaladgi,Boris Barsky,Ivanna Sakhno,Igor Pismennyy,Bogdan Benyuk,Vasyl Virastyuk,Olga Sumskaya,Viktor Andrienko,Oleg Primogenov",
+        "writers_names": "",
+        "directors": [
+            {
+                "uuid": "d784531a-05b7-4822-a995-f283fc6a898c",
+                "full_name": "Viktor Andrienko"
+            }
+        ],
+        "actors": [
+            {
+                "uuid": "1c2cef19-a08d-4666-98a8-2c1616593982",
+                "full_name": "Dmytro Khaladgi"
+            },
+            {
+                "uuid": "26e47942-88a0-4a14-afff-929e97831b6e",
+                "full_name": "Boris Barsky"
+            },
+            {
+                "uuid": "32a84ce1-b9de-4f86-8c22-f528ae0bd3a2",
+                "full_name": "Ivanna Sakhno"
+            },
+            {
+                "uuid": "7d2a86c6-fdc5-4796-982e-58ce7de7b269",
+                "full_name": "Igor Pismennyy"
+            },
+            {
+                "uuid": "96ad89ee-e8ab-4a43-9ebf-8c9fecb50f10",
+                "full_name": "Bogdan Benyuk"
+            },
+            {
+                "uuid": "cb06f9f9-36c3-47be-a4c4-fccb55e82f90",
+                "full_name": "Vasyl Virastyuk"
+            },
+            {
+                "uuid": "d38503d6-83a0-44d5-975b-aa61c680e04a",
+                "full_name": "Olga Sumskaya"
+            },
+            {
+                "uuid": "d784531a-05b7-4822-a995-f283fc6a898c",
+                "full_name": "Viktor Andrienko"
+            },
+            {
+                "uuid": "e47bfa75-dc37-4db8-b1c3-1e0f0edae947",
+                "full_name": "Oleg Primogenov"
+            }
+        ],
+        "writers": []
+    },
+    {
+        "uuid": "6ca6dcd7-cd61-4db1-b9c3-efa531d5ea9a",
+        "imdb_rating": 7.8,
+        "genres": [
+            {
+                "uuid": "21b8c26b-c023-43ab-95da-cb8f8c773fe6",
+                "name": "Comedy"
+            },
+            {
+                "uuid": "485e788e-90b5-4afd-8b28-0f30cd16d4d3",
+                "name": "Science Fiction"
+            }
+        ],
+        "title": "Ivan Vasilyevich Changes His Profession",
+        "description": "Shurik Timofeev builds a working model of a time machine. By accident, Ivan Bunsha, an apartment complex manager, and George Miloslavsky, a petty burglar, are transferred to 16th century Moscow, while Tsar Ivan the Terrible goes into the year 1973.",
+        "directors_names": "",
+        "actors_names": "Aleksandr Demyanenko,Yuriy Yakovlev,Natalya Kustinskaya,Natalya Krachkovskaya,Savely Kramarov,Larisa Eryomina,Leonid Kuravlyov,Sergei Filippov,Vladimir Etush",
+        "writers_names": "Vladlen Bakhnov,Mikhail Bulgakov",
+        "directors": [],
+        "actors": [
+            {
+                "uuid": "2f9ca01e-c693-437b-991f-b224e17340ee",
+                "full_name": "Aleksandr Demyanenko"
+            },
+            {
+                "uuid": "66b73989-3982-4ce8-af5c-9e438315338e",
+                "full_name": "Yuriy Yakovlev"
+            },
+            {
+                "uuid": "7cb8b412-4533-4c90-a438-77bf274b4d88",
+                "full_name": "Natalya Kustinskaya"
+            },
+            {
+                "uuid": "964ba2e5-6b01-46a2-a7ce-e970a3a52fce",
+                "full_name": "Natalya Krachkovskaya"
+            },
+            {
+                "uuid": "a9115468-8cb5-481b-b384-5b44e4d21490",
+                "full_name": "Savely Kramarov"
+            },
+            {
+                "uuid": "b56f82a4-f897-4273-8754-01e992ee0bd0",
+                "full_name": "Larisa Eryomina"
+            },
+            {
+                "uuid": "c4c32356-8eab-4882-a6b8-d191a7dfba74",
+                "full_name": "Leonid Kuravlyov"
+            },
+            {
+                "uuid": "d897757e-8262-4b2a-aebd-5e9255ee16fa",
+                "full_name": "Sergei Filippov"
+            },
+            {
+                "uuid": "f676975e-a319-42d4-85e4-4485090e1937",
+                "full_name": "Vladimir Etush"
+            }
+        ],
+        "writers": [
+            {
+                "uuid": "240c4292-8201-4d6a-9ea8-679369b6db6e",
+                "full_name": "Vladlen Bakhnov"
+            },
+            {
+                "uuid": "d0dd7324-eef2-4a70-95b1-892c9132efd2",
+                "full_name": "Mikhail Bulgakov"
+            }
+        ]
+    },
+    {
+        "uuid": "71fd84b4-5391-473b-a7bb-e87aee94e4af",
+        "imdb_rating": 7.4,
+        "genres": [
+            {
+                "uuid": "485e788e-90b5-4afd-8b28-0f30cd16d4d3",
+                "name": "Science Fiction"
+            },
+            {
+                "uuid": "87751d4c-a850-4e2c-84dc-da6a797d76de",
+                "name": "Adventure"
+            },
+            {
+                "uuid": "8bb01460-217f-471c-be0a-e8fa1ceac2cc",
+                "name": "Action"
+            }
+        ],
+        "title": "Star Trek",
+        "description": "The fate of the galaxy rests in the hands of bitter rivals. One, James Kirk, is a delinquent, thrill-seeking Iowa farm boy. The other, Spock, a Vulcan, was raised in a logic-based society that rejects all emotion. As fiery instinct clashes with calm reason, their unlikely but powerful partnership is the only thing capable of leading their crew through unimaginable danger, boldly going where no one has gone before. The human adventure has begun again.",
+        "directors_names": "",
+        "actors_names": "Daniel D. Lee,Anna Katarina,Jolene Kay,Steve Wharton,Nana Hill,Leonard Nimoy",
+        "writers_names": "",
+        "directors": [],
+        "actors": [
+            {
+                "uuid": "207483e6-a00c-4db7-a6f6-bb5a6c9bdfd4",
+                "full_name": "Daniel D. Lee"
+            },
+            {
+                "uuid": "32b82fd1-ce06-4801-a610-99962bec55af",
+                "full_name": "Anna Katarina"
+            },
+            {
+                "uuid": "4364fa0f-95cc-48dc-80c7-5eac6ba44997",
+                "full_name": "Jolene Kay"
+            },
+            {
+                "uuid": "846e6485-9869-431c-9eae-e86c10a6d310",
+                "full_name": "Steve Wharton"
+            },
+            {
+                "uuid": "9f515a92-9aa7-4e51-aacd-6c5f8ecd2ee5",
+                "full_name": "Nana Hill"
+            },
+            {
+                "uuid": "eab7ff66-3e07-42e0-b708-7b1bc7ccfb8c",
+                "full_name": "Leonard Nimoy"
+            }
+        ],
+        "writers": []
+    },
+    {
+        "uuid": "a8f8d211-2ed5-4155-913d-2dbd52fa016b",
+        "imdb_rating": 4.3,
+        "genres": [
+            {
+                "uuid": "72e63ac7-a953-4322-9f70-d5dc2e675fc7",
+                "name": "Drama"
+            }
+        ],
+        "title": "Dura",
+        "description": "Ульяна Тулина необычный человек — во взрослом теле душа странного и наивного ребенка. Ее поступки, импульсивные и нелепые, то смешат, то удивляют, а то и раздражают окружающих. Единственный родной человек, который заботится об Ульяне, — ее сестра-двойняшка Лиза, актриса-неудачница. Хрупкая гармония отношений рушится, когда в доме Тулиных появляется Мужчина. Саша — начинающий писатель, мечтающий прославиться, неожиданно для себя становится нужным одновременно обеим сестрам. Но только одна из них становится героиней, соавтором и музой его нового романа. Однако реальная жизнь — не литературный жанр. Она сама допишет необходимый финал...",
+        "directors_names": "Maxim Korostyshevsky",
+        "actors_names": "Regina Myannik,Tatyana Lyutaeva,Dmitriy Shevchenko,Igor Zolotovitsky,Olga Volkova,Evgeniy Redko,Aleksandr Baluev,Oksana Korostyshevskaya",
+        "writers_names": "",
+        "directors": [
+            {
+                "uuid": "c65a6098-d0c7-400e-9d0f-335477a879c3",
+                "full_name": "Maxim Korostyshevsky"
+            }
+        ],
+        "actors": [
+            {
+                "uuid": "045dfb5c-58ae-4ec8-b2d3-d4070d43ccf9",
+                "full_name": "Regina Myannik"
+            },
+            {
+                "uuid": "1dc78667-3ba3-4845-9012-986dceedd05f",
+                "full_name": "Tatyana Lyutaeva"
+            },
+            {
+                "uuid": "29e4b601-7d1a-4d37-86d3-bff0fe18979b",
+                "full_name": "Dmitriy Shevchenko"
+            },
+            {
+                "uuid": "772967ef-1664-410a-8bf6-95e23b865739",
+                "full_name": "Igor Zolotovitsky"
+            },
+            {
+                "uuid": "7f6f74dd-3af4-4a80-b3bb-6157eed8aea1",
+                "full_name": "Olga Volkova"
+            },
+            {
+                "uuid": "85550065-853c-453c-9023-f6bc4717ef19",
+                "full_name": "Evgeniy Redko"
+            },
+            {
+                "uuid": "898e3926-cb57-4a00-88be-b24670a3b9fb",
+                "full_name": "Aleksandr Baluev"
+            },
+            {
+                "uuid": "bf039d04-c5c2-4dd4-93d3-379129a126cf",
+                "full_name": "Oksana Korostyshevskaya"
+            }
+        ],
+        "writers": []
+    },
+    {
+        "uuid": "bfac159c-a7ec-48f1-b28c-3e914f40fc12",
+        "imdb_rating": 7.7,
+        "genres": [
+            {
+                "uuid": "374f469f-e3e0-4eda-9a6b-b5639dfcfbd4",
+                "name": "Thriller"
+            },
+            {
+                "uuid": "485e788e-90b5-4afd-8b28-0f30cd16d4d3",
+                "name": "Science Fiction"
+            },
+            {
+                "uuid": "8bb01460-217f-471c-be0a-e8fa1ceac2cc",
+                "name": "Action"
+            }
+        ],
+        "title": "Terminator 2: Judgment Day",
+        "description": "Nearly 10 years have passed since Sarah Connor was targeted for termination by a cyborg from the future. Now her son, John, the future leader of the resistance, is the target for a newer, more deadly terminator. Once again, the resistance has managed to send a protector back to attempt to save John and his mother Sarah.",
+        "directors_names": "",
+        "actors_names": "Robert Winley,Nancy Fish,Arnold Schwarzenegger,Dan Stanton",
+        "writers_names": "",
+        "directors": [],
+        "actors": [
+            {
+                "uuid": "4864b1b9-05a2-468a-bb23-22323896c0e1",
+                "full_name": "Robert Winley"
+            },
+            {
+                "uuid": "8031604e-6261-4444-ac23-f340cff69f67",
+                "full_name": "Nancy Fish"
+            },
+            {
+                "uuid": "e1afd95c-b547-41a5-8697-9999fa697686",
+                "full_name": "Arnold Schwarzenegger"
+            },
+            {
+                "uuid": "e27ebcd7-003e-4a4d-9e5c-c38d282ff141",
+                "full_name": "Dan Stanton"
+            }
+        ],
+        "writers": []
+    },
+    {
+        "uuid": "c3565f1d-1bda-4d13-afc1-3e734ce48c7d",
+        "imdb_rating": 7.4,
+        "genres": [
+            {
+                "uuid": "374f469f-e3e0-4eda-9a6b-b5639dfcfbd4",
+                "name": "Thriller"
+            },
+            {
+                "uuid": "485e788e-90b5-4afd-8b28-0f30cd16d4d3",
+                "name": "Science Fiction"
+            },
+            {
+                "uuid": "8bb01460-217f-471c-be0a-e8fa1ceac2cc",
+                "name": "Action"
+            }
+        ],
+        "title": "The Terminator",
+        "description": "In the post-apocalyptic future, reigning tyrannical supercomputers teleport a cyborg assassin known as the \"Terminator\" back to 1984 to kill Sarah Connor, whose unborn son is destined to lead insurgents against 21st century mechanical hegemony. Meanwhile, the human-resistance movement dispatches a lone warrior to safeguard Sarah. Can he stop the virtually indestructible killing machine?",
+        "directors_names": "",
+        "actors_names": "Dick Miller,John E. Bristol,J. Randolph Harrison,Bill Paxton,Arnold Schwarzenegger,Brian Thompson",
+        "writers_names": "",
+        "directors": [],
+        "actors": [
+            {
+                "uuid": "12cda55f-de20-4780-9c83-c58d19339d58",
+                "full_name": "Dick Miller"
+            },
+            {
+                "uuid": "2ada4a49-dfc5-460b-9c1d-af0777bcad53",
+                "full_name": "John E. Bristol"
+            },
+            {
+                "uuid": "3499da28-d6ba-4d4a-8f7e-81c09c6b0912",
+                "full_name": "J. Randolph Harrison"
+            },
+            {
+                "uuid": "c5266621-d024-419e-91e2-7ae04ac75557",
+                "full_name": "Bill Paxton"
+            },
+            {
+                "uuid": "e1afd95c-b547-41a5-8697-9999fa697686",
+                "full_name": "Arnold Schwarzenegger"
+            },
+            {
+                "uuid": "ee1bbda3-8c15-4669-a49a-93aacce929f6",
+                "full_name": "Brian Thompson"
+            }
+        ],
+        "writers": []
+    }
+]

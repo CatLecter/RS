@@ -2,9 +2,12 @@
 __pycache__/
 *.py[cod]
 *$py.class
+.idea
 
 # C extensions
 *.so
+*.pem
+*.crt
 
 # Distribution / packaging
 .Python
@@ -127,3 +130,13 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/movies_db/volume/
+/volumes/
+/movies_admin/static/
+/elasticsearch/volume/
+!/etl/volumes/
+!/etl/postgres_to_es/log/
+/etl/logs/
+/auth/.env-flask
+/auth/.env-db
+/auth/tests/.env-test

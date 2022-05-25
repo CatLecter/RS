@@ -1,0 +1,40 @@
+{
+  "dynamic": "strict",
+  "properties": {
+    "uuid": {
+      "type": "keyword"
+    },
+    "full_name": {
+      "type": "text",
+      "analyzer": "ru_en",
+      "fields": {
+        "raw": {
+          "type": "keyword"
+        }
+      }
+    },
+    "birth_date": {
+      "type": "date"
+    },
+    "film_works": {
+      "type": "nested",
+      "dynamic": "strict",
+      "properties": {
+        "uuid": {
+          "type": "keyword"
+        },
+        "title": {
+          "type": "text",
+          "analyzer": "ru_en"
+        },
+        "imdb_rating": {
+          "type": "float"
+        },
+        "role": {
+          "type": "text",
+          "analyzer": "ru_en"
+        }
+      }
+    }
+  }
+}

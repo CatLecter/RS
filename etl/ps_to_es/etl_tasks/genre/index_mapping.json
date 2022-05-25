@@ -1,0 +1,21 @@
+{
+  "dynamic": "strict",
+  "properties": {
+    "uuid": {
+      "type": "keyword"
+    },
+    "name": {
+      "type": "text",
+      "analyzer": "ru_en",
+      "fields": {
+        "raw": {
+          "type": "keyword"
+        }
+      }
+    },
+    "description": {
+      "type": "text",
+      "analyzer": "ru_en"
+    }
+  }
+}

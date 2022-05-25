@@ -1,0 +1,50 @@
+cycles_delay: 60
+
+elastic:
+  host: elasticsearch
+  port: 9200
+
+postgress_dsn:
+  host: movies_db
+  port: 5432
+  dbname: movies
+  user: ЗНАЧЕНИЕ БУДЕТ ПЕРЕЗАПИСАНО ПЕРЕМЕННОЙ ОКРУЖЕНИЯ - POSTGRES_USER
+  password: ЗНАЧЕНИЕ БУДЕТ ПЕРЕЗАПИСАНО ПЕРЕМЕННОЙ ОКРУЖЕНИЯ - POSTGRES_PASSWORD
+  options: '-c search_path=content'
+
+etl_tasks:
+  - chunk_size: 100
+    data_class: !!python/name:etl_tasks.film_work.data_structures.FilmWork
+    pg:
+      table: film_work
+      queries:
+        extract: './ps_to_es/etl_tasks/film_work/extract.sql'
+        enrich: './ps_to_es/etl_tasks/film_work/enrich.sql'
+    es:
+      index: movies
+      mapping: './ps_to_es/etl_tasks/film_work/index_mapping.json'
+      settings: './ps_to_es/etl_tasks/film_work/index_settings.json'
+
+  - chunk_size: 100
+    data_class: !!python/name:etl_tasks.genre.data_structures.Genre
+    pg:
+      table: genre
+      queries:
+        extract: './ps_to_es/etl_tasks/genre/extract.sql'
+        enrich: './ps_to_es/etl_tasks/genre/enrich.sql'
+    es:
+      index: genres
+      mapping: './ps_to_es/etl_tasks/genre/index_mapping.json'
+      settings: './ps_to_es/etl_tasks/genre/index_settings.json'
+
+  - chunk_size: 100
+    data_class: !!python/name:etl_tasks.person.data_structures.Person
+    pg:
+      table: person
+      queries:
+        extract: './ps_to_es/etl_tasks/person/extract.sql'
+        enrich: './ps_to_es/etl_tasks/person/enrich.sql'
+    es:
+      index: persons
+      mapping: './ps_to_es/etl_tasks/person/index_mapping.json'
+      settings: './ps_to_es/etl_tasks/person/index_settings.json'

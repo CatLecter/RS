@@ -1,0 +1,55 @@
+# Переопределение настроек с помощью переменных окружения:
+#     flask__secret_key=bar
+#     alchemy__database_uri=sqlite:///:memory:
+
+
+flask:
+  debug: True
+  testing: False
+  secret_key: foo  # OVERWRITE ME WITH ENVIRONMENT VARIABLE: flask__secret_key=bar
+  requests_from_ip_per_minute: 20
+
+alchemy:
+  database_uri: postgresql://user:password@auth_db/auth_database
+  track_modifications: False
+
+redis:
+  host: redis
+  port: 6379
+
+jaeger:
+  host: jaeger
+  port: 6831
+
+jwt:
+  secret_key: buz  # OVERWRITE ME WITH ENVIRONMENT VARIABLE: jwt__secret_key=poo
+  identity_claim: user_uuid  # The claim in a JWT that is used as the source of identity. Default: "sub"
+  access:
+    expires: 900  # 15 minutes
+  refresh:
+    expires: 2592000  # 30 days
+
+oauth:
+  yandex:
+    id: 454956c6b2db4f72814eda643b8e4332
+    secret: bar  # OVERWRITE ME WITH ENVIRONMENT VARIABLE: oauth__yandex__secret=buz
+    redirect_uri: https://oauth.yandex.ru/verification_code
+    authorize_url: https://oauth.yandex.ru/authorize
+    base_url: https://login.yandex.ru/
+    scope: openid profile email
+
+  google:
+    id: 72350065209-mmcsoppjc2u6mi6v8nbdlo3geq020vm1.apps.googleusercontent.com
+    secret: bar  # OVERWRITE ME WITH ENVIRONMENT VARIABLE: oauth__yandex__secret=buz
+    redirect_uri: https://www.googleapis.com/oauth2/v1/userinfo
+    authorize_url: https://accounts.google.com/o/oauth2/v2/auth
+    base_url: https://www.googleapis.com/oauth2/v1/
+    scope: openid profile email
+
+  vk:
+    id: 8108061
+    secret: bar  # OVERWRITE ME WITH ENVIRONMENT VARIABLE: oauth__yandex__secret=buz
+    redirect_uri: https://oauth.vk.com/access_token
+    authorize_url: https://oauth.vk.com/authorize
+    base_url: https://api.vk.com/
+    scope: users.get

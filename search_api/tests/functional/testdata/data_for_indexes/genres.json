@@ -1,0 +1,37 @@
+[
+    {
+        "uuid": "374f469f-e3e0-4eda-9a6b-b5639dfcfbd4",
+        "name": "Thriller",
+        "description": ""
+    },
+    {
+        "uuid": "c15521b1-b3dc-450a-9daa-37e51b591d75",
+        "name": "Fantasy",
+        "description": ""
+    },
+    {
+        "uuid": "8bb01460-217f-471c-be0a-e8fa1ceac2cc",
+        "name": "Action",
+        "description": ""
+    },
+    {
+        "uuid": "72e63ac7-a953-4322-9f70-d5dc2e675fc7",
+        "name": "Drama",
+        "description": ""
+    },
+    {
+        "uuid": "87751d4c-a850-4e2c-84dc-da6a797d76de",
+        "name": "Adventure",
+        "description": ""
+    },
+    {
+        "uuid": "21b8c26b-c023-43ab-95da-cb8f8c773fe6",
+        "name": "Comedy",
+        "description": ""
+    },
+    {
+        "uuid": "485e788e-90b5-4afd-8b28-0f30cd16d4d3",
+        "name": "Science Fiction",
+        "description": ""
+    }
+]

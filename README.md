@@ -8,8 +8,8 @@
 
 Конфигурирование сервиса выполнить:
 ```shell
-docker-compose -f docker-compose.yml down -v
 python movies_admin/manage.py collectstatic --no-input --clear
+docker-compose -f docker-compose.yml down -v
 docker-compose -f docker-compose.yml up -d --build
 docker-compose -f docker-compose.yml exec movies_admin python manage.py migrate --fake movies 0001
 docker-compose -f docker-compose.yml exec movies_admin python manage.py makemigrations

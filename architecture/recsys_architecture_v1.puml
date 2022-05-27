@@ -12,19 +12,28 @@ title [ARCH]: Recommendation system
 
 actor Клиент as Client
 component FastAPI
-component RecomendationSystem <<Раз в неделю переобучается. \n В течении недели по запросу выдает \n рекомендации для пользователей>>
-component Nginx
-database ClickHouse <<Хранение оценок фильмов пользователями>>
-database Cash_RS <<Кэш рекомендаций для пользователей>>
-database db <<Хранение просчитанных рекомендаций на неделю>>
-Client -->Nginx: "Запрос начальной \n страницы сайта"
-Nginx --> Client: Страница (Json)
-Nginx --> FastAPI: Запрос предложений \n фильмов для пользователя
-FastAPI --> Nginx: данные для вывода пользователю
-FastAPI --> db: Запрос рекомендаций
-db --> FastAPI:Рекомендации
-RecomendationSystem -down--> db: Сохранение рекомендаций для \n пользователей после рассчета \n раз в неделю
-FastAPI -down--> Cash_RS: Запрос рекомендаций из кэша \n Если нет, положить рекомендацию в кээш
-Cash_RS --> FastAPI: Закэшированные рекомендации
-ClickHouse -down--> RecomendationSystem: (раз в неделю) \n выгрузка данных для обучения
+node RSEngine <<Рекомендательная система>> {
+    rectangle EventGetter <<Выгружает события>>
+    rectangle Preparer <<Подготавливает данные \n для модели>>
+    rectangle Loader <<Загружает наборы \n рекомендованных фильмов в DB>>
+    rectangle CollaborativeFiltering <<Делает \n рекомендовации фильмов>>
+    rectangle PopularFilms
+}
+cloud Nginx
+database ClickHouse <<Хранение событий пользователей>>
+database Cache <<Кэш запросов>>
+database DB <<Хранение рекомендаций на неделю>>
+
+Client -->Nginx: Запрос списка  \n рекомендованных фильмов
+Nginx ---> FastAPI: Проксирование запроса
+FastAPI <-up--> DB: Запрос рекомендаций
+ClickHouse --> EventGetter
+Preparer -> CollaborativeFiltering
+EventGetter -right-> Preparer
+EventGetter -down-> PopularFilms
+PopularFilms --> DB
+
+CollaborativeFiltering -down-> Loader
+Loader -down--> DB: Сохранение рекомендаций для \n пользователей
+FastAPI <-up--> Cache: Кэширование данных
 @enduml

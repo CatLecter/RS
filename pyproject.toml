@@ -27,6 +27,7 @@ loguru = "^0.6.0"
 celery = {extras = ["amqp"], version = "^5.2.6"}
 aiokafka = "^0.7.2"
 sentry-sdk = "^1.5.12"
+Flask = "^2.1.2"
 
 [tool.poetry.dev-dependencies]
 black = "^22.3.0"

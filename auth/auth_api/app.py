@@ -1,11 +1,17 @@
+# from http.client import TOO_MANY_REQUESTS
+
 from auth_api import manage
 from auth_api.api.v1.views import blueprint as api_blueprint
 from auth_api.auth.v1.views import blueprint as auth_blueprint
 from auth_api.commons.fast_json import ORJSONDecoder, ORJSONEncoder
+
+# from auth_api.commons.utils import is_rate_limit_exceeded
 from auth_api.extensions import apispec, db, jwt, migrate, settings, tracing
 from auth_api.oauth.v1.views import blueprint as oauth_blueprint
 from auth_api.settings.settings import Settings
 from flask import Flask
+
+# from flask import jsonify, request
 
 
 def create_app():
@@ -38,9 +44,10 @@ def configure_app(app, app_settings: Settings):
         "SQLALCHEMY_TRACK_MODIFICATIONS"
     ] = app_settings.alchemy.track_modifications
 
-    # app.before_request(before_request)
 
-
+#     app.before_request(before_request)
+#
+#
 # def before_request():
 #     # Для логирования в Jaeger нам требуется $request_id,
 #     #  это простая защита, чтобы nginx не забыли настроить правильно.

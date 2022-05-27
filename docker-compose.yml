@@ -10,7 +10,7 @@ services:
       - ./movies_db/volume:/var/lib/postgresql/data
       - ./movies_db/sql_scripts:/docker-entrypoint-initdb.d
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U catlecter -d movies"]
+      test: ["CMD-SHELL", "pg_isready -U user -d movies"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -196,8 +196,14 @@ services:
       - auth_db:/var/lib/postgresql/data
     env_file:
       - ./auth/.env-db
-    expose:
-      - 5433
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d movies"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
   jaeger:
     image: jaegertracing/all-in-one:1.33.0
@@ -209,6 +215,8 @@ services:
     image: redis:7.0.0-bullseye
     expose:
       - 6379
+    healthcheck:
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
 
   auth:
     build: ./auth/
@@ -218,9 +226,10 @@ services:
       - ./auth/auth_api:/app/auth_api
       - ./auth/migrations:/app/migrations
     depends_on:
-#      - auth_db
-      - redis
-      - jaeger
+      movies_db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     expose:
       - 5000
     command: flask run -h 0.0.0.0

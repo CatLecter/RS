@@ -10,30 +10,36 @@ skinparam SequenceMessageAlign reverseDirection
 
 title [ARCH]: Recommendation system
 
+rectangle APIGateway
 actor Клиент as Client
 component FastAPI
+database DB <<Хранение рекомендаций на неделю>>
+database Cache <<Кэш запросов>>
+node SearchApi
+database ClickHouse <<Хранение событий пользователей>>
 node RSEngine <<Рекомендательная система>> {
-    rectangle EventGetter <<Выгружает события>>
+    rectangle EventGetter1 <<Выгружает события>>
     rectangle Preparer <<Подготавливает данные \n для модели>>
     rectangle Loader <<Загружает наборы \n рекомендованных фильмов в DB>>
     rectangle CollaborativeFiltering <<Делает \n рекомендовации фильмов>>
-    rectangle PopularFilms
 }
-cloud Nginx
-database ClickHouse <<Хранение событий пользователей>>
-database Cache <<Кэш запросов>>
-database DB <<Хранение рекомендаций на неделю>>
+node FilterByPopularity <<Фильтр популярных фильмов за неделю>> {
+    rectangle EventGetter2 <<Выгружает события>>
+    rectangle PopularFilms <<Подбирает популярные фильмы \n за неделю для "холодных" пользователей>>
+}
 
-Client -->Nginx: Запрос списка  \n рекомендованных фильмов
-Nginx ---> FastAPI: Проксирование запроса
+Client --> APIGateway: Запрос списка \n рекомендованных фильмов
+APIGateway ---> FastAPI: Проксирование запроса
 FastAPI <-up--> DB: Запрос рекомендаций
-ClickHouse --> EventGetter
-Preparer -> CollaborativeFiltering
-EventGetter -right-> Preparer
-EventGetter -down-> PopularFilms
-PopularFilms --> DB
-
-CollaborativeFiltering -down-> Loader
-Loader -down--> DB: Сохранение рекомендаций для \n пользователей
+ClickHouse -right-> EventGetter1
+ClickHouse -left-> EventGetter2
+EventGetter1 -left-> Preparer
+Preparer -up-> SearchApi: Обогащение \n данных
+Preparer -down-> CollaborativeFiltering
+CollaborativeFiltering -right-> Loader
+EventGetter2 -down-> PopularFilms
+PopularFilms --> DB: Сохранение подборки
+PopularFilms -right-> SearchApi
+Loader -down-> DB: Сохранение рекомендаций
 FastAPI <-up--> Cache: Кэширование данных
 @enduml

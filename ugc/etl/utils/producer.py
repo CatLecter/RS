@@ -3,12 +3,12 @@ from datetime import datetime
 from random import choice
 from uuid import uuid4
 
-from ugc.ugc.src.db.kafka import get_event_broker
-from ugc.ugc.src.engines.message_broker.kafka import KafkaProducerEngine
+from ugc.src import get_kafka_producer
 
 
 async def main():
-    producer: KafkaProducerEngine = get_event_broker()  # type: ignore
+    producer = get_kafka_producer()
+    await producer.start()
 
     for _ in range(5):
         value = {

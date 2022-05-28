@@ -26,6 +26,7 @@ async def watched_movies(
         "user_uuid": request.state.user_uuid,
         "watched_movie": movie_id,
         "added": msg.added,
+        "datetime": msg.datetime,
     }
     await watch_service.send(value)
     return {

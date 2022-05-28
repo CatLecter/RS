@@ -24,6 +24,7 @@ async def make_migrations(client: ChClient):
     """Make migrations."""
     dir_list = os.listdir("./migrations")
     for file in dir_list:
+        print(file)
         if file.endswith(".sql"):
             with open(f"./migrations/{file}", "r") as f:
                 sql = f.read()

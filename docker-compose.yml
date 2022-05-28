@@ -111,7 +111,7 @@ services:
     hostname: zookeeper
 
   clickhouse-node1:
-    image: clickhouse/clickhouse-server:22.5.1.2079
+    image: clickhouse/clickhouse-server:22.3.6.5
     container_name: clickhouse-node1
     hostname: clickhouse-node1
     ports:
@@ -127,7 +127,7 @@ services:
       - zookeeper
 
   clickhouse-node2:
-    image: clickhouse/clickhouse-server:22.5.1.2079
+    image: clickhouse/clickhouse-server:22.3.6.5
     container_name: clickhouse-node2
     hostname: clickhouse-node2
     volumes:
@@ -140,7 +140,7 @@ services:
       - zookeeper
 
   clickhouse-node3:
-    image: clickhouse/clickhouse-server:22.5.1.2079
+    image: clickhouse/clickhouse-server:22.3.6.5
     container_name: clickhouse-node3
     hostname: clickhouse-node3
     volumes:
@@ -153,7 +153,7 @@ services:
       - zookeeper
 
   clickhouse-node4:
-    image: clickhouse/clickhouse-server:22.5.1.2079
+    image: clickhouse/clickhouse-server:22.3.6.5
     container_name: clickhouse-node4
     hostname: clickhouse-node4
     volumes:

@@ -24,7 +24,7 @@ async def watched_movies(
 
     value = {
         "user_uuid": request.state.user_uuid,
-        "watched_movie": movie_id,
+        "movie_uuid": movie_id,
         "added": msg.added,
         "datetime": msg.datetime,
     }

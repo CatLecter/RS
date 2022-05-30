@@ -9,7 +9,6 @@ from .core.config import ProjectConfig
 from .db.kafka import get_event_broker
 from .engines.message_broker.kafka import KafkaProducerEngine
 from .middleware.handlers_headers import jwt_handler, language_handler
-from .services import sentry
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +28,6 @@ app.middleware("http")(language_handler)
 
 @app.on_event("startup")
 async def startup():
-    sentry.init(app)
     await asyncio.gather(
         get_event_broker(),
     )

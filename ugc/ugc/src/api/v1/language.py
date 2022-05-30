@@ -13,10 +13,10 @@ router = APIRouter()
 logger = logging.getLogger(__name__)
 
 
-@router.post("/movies/{movie_id}/language")
+@router.post("/movies/{movie_uuid}/language")
 async def language_movies(
     msg: LanguageMovie,
-    movie_id: UUID,
+    movie_uuid: UUID,
     request: Request,
     language_service: LanguageService = Depends(get_language_service),
 ):
@@ -24,7 +24,7 @@ async def language_movies(
     language = msg.language_movie
     value = {
         "user_uuid": request.state.user_uuid,
-        "movie_id": movie_id,
+        "movie_uuid": movie_uuid,
         "language_movie": language,
         "language_client": request.state.language,
         "datetime": msg.datetime,
@@ -33,7 +33,7 @@ async def language_movies(
     return {
         "success": {
             "User UUID": request.state.user_uuid,
-            "Movie UUID": movie_id,
+            "Movie UUID": movie_uuid,
             "Movie language": language,
             "Client language": request.state.language,
         }

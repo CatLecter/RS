@@ -26,3 +26,4 @@ docker-compose exec auth flask loaddata
 - UGC API: http://0.0.0.0/ugc/api/openapi#/
 - Auth Swagger: http://0.0.0.0/swagger-ui
 - Auth Redoc: http://0.0.0.0/redoc-ui
+- Kafdrop: http://0.0.0.0:19000/

@@ -13,10 +13,10 @@ router = APIRouter()
 logger = logging.getLogger(__name__)
 
 
-@router.post("/movies/{movie_id}/watched")
+@router.post("/movies/{movie_uuid}/watched")
 async def watched_movies(
     msg: WatchedMessage,
-    movie_id: UUID,
+    movie_uuid: UUID,
     request: Request,
     watch_service: WatchService = Depends(get_watch_service),
 ):
@@ -24,7 +24,7 @@ async def watched_movies(
 
     value = {
         "user_uuid": request.state.user_uuid,
-        "movie_uuid": movie_id,
+        "movie_uuid": movie_uuid,
         "added": msg.added,
         "datetime": msg.datetime,
     }
@@ -32,6 +32,6 @@ async def watched_movies(
     return {
         "success": {
             "User UUID": request.state.user_uuid,
-            "Movie UUID": movie_id,
+            "Movie UUID": movie_uuid,
         }
     }

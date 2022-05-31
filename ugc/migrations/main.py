@@ -72,7 +72,7 @@ def insert_views(data: dict, client: Client):
     try:
         view = View(**data)
         client.execute(
-            "INSERT INTO default.ratings (user_uuid, movie_uuid, datetime, progress) \
+            "INSERT INTO default.views (user_uuid, movie_uuid, datetime, progress) \
             VALUES (%(user_uuid)s, %(movie_uuid)s, %(datetime)s, %(progress)s)",
             {
                 "user_uuid": view.user_uuid,
@@ -89,7 +89,7 @@ def insert_watched(data: dict, client: Client):
     try:
         watched = Watched(**data)
         client.execute(
-            "INSERT INTO default.ratings (user_uuid, movie_uuid, datetime, added) \
+            "INSERT INTO default.watched (user_uuid, movie_uuid, datetime, added) \
             VALUES (%(user_uuid)s, %(movie_uuid)s, %(datetime)s, %(added)s)",
             {
                 "user_uuid": watched.user_uuid,

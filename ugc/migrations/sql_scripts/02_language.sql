@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS default.language (
     user_uuid UUID,
-    movie_id UUID,
+    movie_uuid UUID,
     datetime DateTime,
     language_movie String,
     language_client String

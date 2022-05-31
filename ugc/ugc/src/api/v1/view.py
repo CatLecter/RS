@@ -13,25 +13,25 @@ router = APIRouter()
 logger = logging.getLogger(__name__)
 
 
-@router.post("/movies/{movie_id}/view")
+@router.post("/movies/{movie_uuid}/view")
 async def track_movie_progress(
     msg: MovieProgressMessage,
-    movie_id: UUID,
+    movie_uuid: UUID,
     request: Request,
     view_service: ViewService = Depends(get_view_service),
 ):
     """Track movie progress."""
     value = {
         "user_uuid": request.state.user_uuid,
-        "movie_uuid": movie_id,
+        "movie_uuid": movie_uuid,
         "datetime": msg.datetime,
-        "progress": msg.seconds_watched,
+        "progress": msg.progress,
     }
     await view_service.send(value)
     return {
         "success": {
             "User UUID": request.state.user_uuid,
-            "Movie UUID": movie_id,
-            "Progress": msg.seconds_watched,
+            "Movie UUID": movie_uuid,
+            "Progress": msg.progress,
         }
     }

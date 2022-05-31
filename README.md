@@ -1,12 +1,12 @@
 # RS
 ## Рекомендательная система
 
-Перед началом работы с проектом выполнить:
+### Перед началом работы с проектом выполнить:
 - Установку Poetry согласно https://python-poetry.org/docs/#installation
 - Выполнить команду poetry install
 - Выполнить команду pre-commit install
 
-Конфигурирование сервиса выполнить:
+### Для запуска сервиса выполнить:
 ```shell
 python movies_admin/manage.py collectstatic --no-input --clear
 docker-compose -f docker-compose.yml down -v
@@ -20,10 +20,11 @@ docker-compose exec auth flask createsuperuser -u admin -e example@email.com -p 
 docker-compose exec auth flask loaddata
 ```
 
-## Ссылки:
+### Ссылки:
 - Панель администратора: http://0.0.0.0/admin/
-- Movies API: http://0.0.0.0/api/openapi#/
-- UGC API: http://0.0.0.0/ugc/api/openapi#/
+- Movies search API: http://0.0.0.0/api/openapi#/
+- UGC OpenAPI: http://0.0.0.0/ugc/api/openapi#/
 - Auth Swagger: http://0.0.0.0/swagger-ui
 - Auth Redoc: http://0.0.0.0/redoc-ui
-- Kafdrop: http://0.0.0.0:19000/
+- Панель Kafdrop: http://0.0.0.0:19000/
+- Панель RabbitMQ: http://0.0.0.0:15672/#/

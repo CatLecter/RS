@@ -251,8 +251,40 @@ services:
       - 5000
     command: flask run -h 0.0.0.0
 
+  rabbitmq:
+    image: rabbitmq:3.10.2-management
+    container_name: rabbitmq
+    restart: on-failure
+    env_file:
+      - ./rs/.rabbitmq_env
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq:/var/lib/rabbitmq
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 30s
+      timeout: 30s
+      retries: 3
+
+  rs:
+    build: ./rs/
+    container_name: rs
+    restart: always
+    env_file:
+      - ./rs/.rs_env
+    environment:
+      FOR_PERIOD: 14
+    volumes:
+      - ./rs/log/:/usr/src/rs/log
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
 volumes:
   movies_db:
   es:
   auth_db:
   ch_db:
+  rabbitmq:

@@ -140,4 +140,6 @@ dmypy.json
 /auth/.env-flask
 /auth/.env-db
 /auth/tests/.env-test
-/movies_db/volume/
+/rs/.rabbitmq_env
+/rs/.rs_env
+/rs/log/

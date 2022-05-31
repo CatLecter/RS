@@ -208,8 +208,6 @@ services:
       - ./ugc/.env
     expose:
       - 8000
-    volumes:
-      - ./ugc/CA.pem:/etc/CA.pem
     depends_on:
       kafka:
         condition: service_healthy

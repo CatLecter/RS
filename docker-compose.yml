@@ -6,6 +6,8 @@ services:
       - ./movies_db/.env
     ports:
       - "5432:5432"
+    networks:
+      - net
     volumes:
       - movies_db:/var/lib/postgresql/data
       - ./movies_db/sql_scripts:/docker-entrypoint-initdb.d
@@ -25,11 +27,13 @@ services:
       - ./sqlite_to_postgres/.env
     volumes:
       - ./movies_sqlite/db.sqlite:/usr/src/sqlite_to_postgres/db.sqlite
+    networks:
+      - net
+    links:
+      - movies_db
     depends_on:
       movies_db:
         condition: service_healthy
-    links:
-      - movies_db
 
   movies_admin:
     build: ./movies_admin/
@@ -39,11 +43,13 @@ services:
       - ./movies_admin/.env
     expose:
       - 8000
+    networks:
+      - net
+    links:
+      - movies_db
     depends_on:
       movies_db:
         condition: service_healthy
-    links:
-      - movies_db
 
   elasticsearch:
     image: elasticsearch:7.17.3
@@ -56,6 +62,8 @@ services:
       - es:/usr/share/elasticsearch/data
     expose:
       - 9200
+    networks:
+      - net
     healthcheck:
       test: curl -u elastic:elastic -s -f elasticsearch:9200/_cat/health >/dev/null || exit 1
       interval: 30s
@@ -68,6 +76,8 @@ services:
     restart: on-failure
     env_file:
       - ./etl/.env
+    networks:
+      - net
     depends_on:
       elasticsearch:
         condition: service_healthy
@@ -78,17 +88,20 @@ services:
     image: redis:7.0.0-bullseye
     expose:
       - 6379
+    networks:
+      - net
     healthcheck:
       test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
 
   search_api:
     build: ./search_api/
     container_name: search_api
+    hostname: search_api
     restart: on-failure
     env_file:
       - ./search_api/.env
-    expose:
-      - 8000
+    networks:
+      - net
     depends_on:
       elasticsearch:
         condition: service_healthy
@@ -105,6 +118,8 @@ services:
       - ./movies_admin/static/:/static
     ports:
       - "80:80"
+    networks:
+      - net
     depends_on:
       - movies_admin
       - search_api
@@ -114,6 +129,8 @@ services:
     hostname: zookeeper-kafka
     ports:
       - "12181:12181"
+    networks:
+      - net
     environment:
       ZOOKEEPER_SERVER_ID: 1
       ZOOKEEPER_CLIENT_PORT: 12181
@@ -127,6 +144,8 @@ services:
     hostname: kafka
     ports:
       - "19092:19092"
+    networks:
+      - net
     depends_on:
       - zookeeper-kafka
     environment:
@@ -146,8 +165,11 @@ services:
 
   init-kafka:
     image: confluentinc/cp-kafka:7.1.1
+    networks:
+      - net
     depends_on:
-      - kafka
+      kafka:
+        condition: service_healthy
     entrypoint: [ '/bin/sh', '-c' ]
     command: |
       "
@@ -168,6 +190,8 @@ services:
     image: obsidiandynamics/kafdrop:3.30.0
     ports:
       - "19000:9000"
+    networks:
+      - net
     environment:
       KAFKA_BROKERCONNECT: "kafka:19092"
     depends_on:
@@ -182,6 +206,8 @@ services:
     ports:
       - "8123:8123"
       - "9000:9000"
+    networks:
+      - net
     volumes:
       - ./ugc/migrations/sql_scripts:/docker-entrypoint-initdb.d
       - ch_db:/var/lib/clickhouse/
@@ -194,6 +220,8 @@ services:
   ugc_etl:
     build: ./ugc/migrations/
     container_name: ugc_etl
+    networks:
+      - net
     depends_on:
       kafka:
         condition: service_healthy
@@ -208,6 +236,8 @@ services:
       - ./ugc/.env
     expose:
       - 8000
+    networks:
+      - net
     depends_on:
       kafka:
         condition: service_healthy
@@ -221,6 +251,8 @@ services:
       - ./auth/.env-db
     ports:
       - "5433:5432"
+    networks:
+      - net
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U user -d movies"]
       interval: 10s
@@ -232,6 +264,8 @@ services:
     image: redis:7.0.0-bullseye
     expose:
       - 6379
+    networks:
+      - net
     healthcheck:
       test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
 
@@ -242,13 +276,15 @@ services:
     volumes:
       - ./auth/auth_api:/app/auth_api
       - ./auth/migrations:/app/migrations
+    expose:
+      - 5000
+    networks:
+      - net
     depends_on:
       movies_db:
         condition: service_healthy
       redis:
         condition: service_healthy
-    expose:
-      - 5000
     command: flask run -h 0.0.0.0
 
   rabbitmq:
@@ -260,6 +296,8 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+    networks:
+      - net
     volumes:
       - rabbitmq:/var/lib/rabbitmq
     healthcheck:
@@ -278,6 +316,8 @@ services:
       FOR_PERIOD: 14
     volumes:
       - ./rs/log/:/usr/src/rs/log
+    networks:
+      - net
     depends_on:
       rabbitmq:
         condition: service_healthy
@@ -288,3 +328,11 @@ volumes:
   auth_db:
   ch_db:
   rabbitmq:
+
+networks:
+  net:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/24
+         gateway: 10.5.0.1

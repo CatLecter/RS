@@ -11,6 +11,9 @@ class Config(BaseSettings):
     for_period: int = 14
 
 
+TABLES: list = ["bookmarks", "language", "ratings", "views", "watched"]
+
+
 log_config = {
     "sink": "./log/rs.log",
     "format": "{time} {level} {message}",

@@ -1200,7 +1200,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "c419ff7ea2823812afd8df224bb10aab02db3338eb843f8e5622e91f7f3bccca"
+content-hash = "9808a1e774c61b68ab4f3aaa5ca2458164fb222e7acf291e4004146c331af0c0"
 
 [metadata.files]
 about-time = [

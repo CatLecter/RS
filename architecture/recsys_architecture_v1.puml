@@ -23,7 +23,7 @@ node RSEngine <<Рекомендательная система>> {
     rectangle Loader <<Загружает наборы \n рекомендованных фильмов в DB>>
     rectangle CollaborativeFiltering <<Делает \n рекомендовации фильмов>>
 }
-node FilterByPopularity <<Фильтр популярных фильмов за неделю>> {
+node FilterByPopularity <<Популярные фильмы за неделю для "холодных" пользователей>> {
     rectangle EventGetter2 <<Выгружает события>>
     rectangle PopularFilms <<Подбирает популярные фильмы \n за неделю для "холодных" пользователей>>
 }
@@ -31,15 +31,16 @@ node FilterByPopularity <<Фильтр популярных фильмов за 
 Client --> APIGateway: Запрос списка \n рекомендованных фильмов
 APIGateway ---> FastAPI: Проксирование запроса
 FastAPI <-up--> DB: Запрос рекомендаций
-ClickHouse -right-> EventGetter1
-ClickHouse -left-> EventGetter2
+ClickHouse --> EventGetter1
+ClickHouse -right-> EventGetter2
 EventGetter1 -left-> Preparer
-Preparer -up-> SearchApi: Обогащение \n данных
 Preparer -down-> CollaborativeFiltering
+Preparer -left-> SearchApi
+Preparer <--> Cache
 CollaborativeFiltering -right-> Loader
 EventGetter2 -down-> PopularFilms
 PopularFilms --> DB: Сохранение подборки
-PopularFilms -right-> SearchApi
-Loader -down-> DB: Сохранение рекомендаций
+DB <-- Loader: Сохранение рекомендаций
+FastAPI -up-> SearchApi: Обогащение \n данных
 FastAPI <-up--> Cache: Кэширование данных
 @enduml

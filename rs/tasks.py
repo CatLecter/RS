@@ -1,11 +1,16 @@
+from typing import List
+
 from celery import Celery, chain
 from celery.schedules import crontab
 from clickhouse_driver import Client
 from clickhouse_driver.errors import Error
+from config import TABLES
 from config import config as cfg
 from config import log_config
 from getter import EventGetter
 from loguru import logger
+from models import PersonalRecommendation
+from preparer import processing
 
 logger.add(**log_config)
 
@@ -17,46 +22,47 @@ celery_app = Celery(
 
 
 @celery_app.task
-def getter():
+def getter() -> dict:
     """Задача получения данных из ClickHouse за указанный период."""
+
     try:
         with Client(host=f"{cfg.ch_host}") as client:
+            result: dict = {}
             eg = EventGetter(client)
-            bookmarks = eg.get_for_period(
-                period=cfg.for_period,
-                table_name="bookmarks",
-            )
-            language = eg.get_for_period(
-                period=cfg.for_period,
-                table_name="language",
-            )
-            ratings = eg.get_for_period(
-                period=cfg.for_period,
-                table_name="ratings",
-            )
-            views = eg.get_for_period(
-                period=cfg.for_period,
-                table_name="views",
-            )
-            watched = eg.get_for_period(
-                period=cfg.for_period,
-                table_name="watched",
-            )
-            return bookmarks, language, ratings, views, watched
+            for table in TABLES:
+                result[table] = eg.get_for_period(
+                    period=cfg.for_period,
+                    table_name=table,
+                )
+            return result
     except Error as e:
         logger.exception(e)
 
 
 @celery_app.task
-def preparer(bookmarks, language, ratings, views, watched) -> None:
+def preparer(raw_data: dict) -> tuple:
     """Задача подготовки и обогащения данных."""
 
-    if bookmarks:
+    if raw_data:
         try:
-            for cell in bookmarks:
-                print(cell)
+            return processing(raw_data)
         except Exception as e:
             logger.exception(e)
+
+
+@celery_app.task
+def filtering(
+    bookmarks: list, languages: list, ratings: list, views: list, watched: list
+) -> List[PersonalRecommendation]:
+    """Задача коллаборативной фильтрации. Возвращает список моделей
+    PersonalRecommendation для дальнейшей их загрузки в БД.
+    """
+
+    try:
+        """Сюда должна быть интегрирована модель из LightFM."""
+        pass
+    except Exception as e:
+        logger.exception(e)
 
 
 @celery_app.task
@@ -66,6 +72,7 @@ def rs() -> None:
     chain(
         getter.s(),
         preparer.s(),
+        filtering.s(),
     ).delay()
 
 
@@ -73,4 +80,4 @@ def rs() -> None:
 def setup_periodic_taskc(sender, **kwargs):
     """Планировщик запуска рекомендательной системы (раз в 1 минуту для теста)."""
 
-    sender.add_periodic_task(crontab(minute="*/1"), rs.s())
+    sender.add_periodic_task(crontab(minute="*/4"), rs.s())

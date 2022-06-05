@@ -281,7 +281,7 @@ services:
     networks:
       - net
     depends_on:
-      movies_db:
+      auth_db:
         condition: service_healthy
       redis:
         condition: service_healthy
@@ -322,12 +322,76 @@ services:
       rabbitmq:
         condition: service_healthy
 
+  rs_cache:
+    image: redis:7.0.0-bullseye
+    expose:
+      - 6379
+    networks:
+      - net
+    healthcheck:
+      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
+
+#  mongo:
+#    image: mongo:5.0.9-focal
+#    container_name: mongo
+#    hostname: mongo
+#    restart: on-failure
+#    env_file:
+#      - ./rs_api/.mongo_env
+#    volumes:
+#      - mongo:/data/db
+#    ports:
+#      - "27017:27017"
+#    networks:
+#      - net
+#    healthcheck:
+#      test: echo 'db.runCommand("ping").ok' | mongo mongo:27017/test --quiet
+#      interval: 10s
+#      timeout: 10s
+#      retries: 5
+#      start_period: 40s
+
+  rs_db:
+    image: elasticsearch:7.17.3
+    container_name: rs_db
+    restart: on-failure
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - rs_db:/usr/share/elasticsearch/data
+    expose:
+      - 9200
+    networks:
+      - net
+    healthcheck:
+      test: curl -u elastic:elastic -s -f elasticsearch:9200/_cat/health >/dev/null || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  rs_api:
+    build: ./rs_api/
+    container_name: rs_api
+    hostname: rs_api
+    restart: on-failure
+    env_file:
+      - ./rs_api/.env
+    networks:
+      - net
+    depends_on:
+      rs_db:
+        condition: service_healthy
+      rs_cache:
+        condition: service_healthy
+
 volumes:
   movies_db:
   es:
   auth_db:
   ch_db:
   rabbitmq:
+  rs_db:
 
 networks:
   net:

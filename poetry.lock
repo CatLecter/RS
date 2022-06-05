@@ -1,4 +1,12 @@
 [[package]]
+name = "about-time"
+version = "3.1.1"
+description = "Easily measure timing and throughput of code blocks, with beautiful human friendly representations."
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "aiochclient"
 version = "2.1.0"
 description = "Async http clickhouse client for python 3.6+"
@@ -59,7 +67,10 @@ python-versions = "*"
 
 [package.dependencies]
 async-timeout = "*"
-hiredis = "*"
+typing-extensions = "*"
+
+[package.extras]
+hiredis = ["hiredis (>=1.0)"]
 
 [[package]]
 name = "aiosignal"
@@ -71,6 +82,18 @@ python-versions = ">=3.6"
 
 [package.dependencies]
 frozenlist = ">=1.1.0"
+
+[[package]]
+name = "alive-progress"
+version = "2.4.1"
+description = "A new kind of Progress Bar, with real-time throughput, ETA, and very cool animations!"
+category = "dev"
+optional = false
+python-versions = ">=3.7, <4"
+
+[package.dependencies]
+about-time = "3.1.1"
+grapheme = "0.6.0"
 
 [[package]]
 name = "amqp"
@@ -429,6 +452,17 @@ six = "*"
 develop = ["mock", "pytest (>=3.0.0)", "pytest-cov", "pytest-mock (<3.0.0)", "pytz", "coverage (<5.0.0)", "sphinx", "sphinx-rtd-theme"]
 
 [[package]]
+name = "faker"
+version = "13.12.0"
+description = "Faker is a Python package that generates fake data for you."
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+python-dateutil = ">=2.4"
+
+[[package]]
 name = "fastapi"
 version = "0.78.0"
 description = "FastAPI framework, high performance, easy to learn, fast to code, ready for production"
@@ -496,6 +530,28 @@ description = "A list-like structure which implements collections.abc.MutableSeq
 category = "main"
 optional = false
 python-versions = ">=3.7"
+
+[[package]]
+name = "grapheme"
+version = "0.6.0"
+description = "Unicode grapheme helpers"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.extras]
+test = ["pytest", "sphinx", "sphinx-autobuild", "wheel", "twine"]
+
+[[package]]
+name = "greenlet"
+version = "1.1.2"
+description = "Lightweight in-process concurrent programming"
+category = "dev"
+optional = false
+python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*"
+
+[package.extras]
+docs = ["sphinx"]
 
 [[package]]
 name = "gunicorn"
@@ -1131,6 +1187,10 @@ python-versions = "^3.10"
 content-hash = "7212f1afca95510f791e5783b4d3c63f3dce2e1bdd366d7b80f8a52ac6448646"
 
 [metadata.files]
+about-time = [
+    {file = "about-time-3.1.1.tar.gz", hash = "sha256:586b329450c9387d1ae8c42d2db4f5b4c57a54508d0f1b7bb00322ffd5ce9f9b"},
+    {file = "about_time-3.1.1-py3-none-any.whl", hash = "sha256:96841beb3f9b5de1cbb323d2bdb0fa9abdecbc46f2d546b9b3c2483d23daa17a"},
+]
 aiochclient = [
     {file = "aiochclient-2.1.0.tar.gz", hash = "sha256:a590e0103a55a2dc7dda4b350183ad0ef77f9b23f5a95bd1b7982e8f9bec4e00"},
 ]
@@ -1238,6 +1298,10 @@ aioredis = [
 aiosignal = [
     {file = "aiosignal-1.2.0-py3-none-any.whl", hash = "sha256:26e62109036cd181df6e6ad646f91f0dcfd05fe16d0cb924138ff2ab75d64e3a"},
     {file = "aiosignal-1.2.0.tar.gz", hash = "sha256:78ed67db6c7b7ced4f98e495e572106d5c432a93e1ddd1bf475e1dc05f5b7df2"},
+]
+alive-progress = [
+    {file = "alive-progress-2.4.1.tar.gz", hash = "sha256:089757c8197f27ad972ba27e1060f6db92368d83c736884e159034fd74865323"},
+    {file = "alive_progress-2.4.1-py3-none-any.whl", hash = "sha256:5503ffca0a0607d5f0d24d3b10a718fe50e375470fa07602b246333eb7ec88ee"},
 ]
 amqp = [
     {file = "amqp-5.1.1-py3-none-any.whl", hash = "sha256:6f0956d2c23d8fa6e7691934d8c3930eadb44972cbbd1a7ae3a520f735d43359"},

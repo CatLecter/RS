@@ -20,6 +20,17 @@ docker-compose exec auth flask createsuperuser -u admin -e example@email.com -p 
 docker-compose exec auth flask loaddata
 ```
 
+### Модуль генерации событий от пользователей
+
+Документация
+```
+python -m event_generator --help
+```
+Пример использования
+```
+python -m event_generator -E2 -U10 -F10
+```
+
 ## Ссылки:
 - Панель администратора: http://0.0.0.0/admin/
 - Movies API: http://0.0.0.0/api/openapi#/

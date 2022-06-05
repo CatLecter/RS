@@ -141,3 +141,4 @@ dmypy.json
 /auth/.env-db
 /auth/tests/.env-test
 /movies_db/volume/
+*.db

@@ -1,11 +1,13 @@
 services:
   movies_db:
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
     container_name: movies_db
     image: postgres:14.3-bullseye
     env_file:
       - ./movies_db/.env
-    ports:
-      - "5432:5432"
+    expose:
+      - 5432
     volumes:
       - movies_db:/var/lib/postgresql/data
       - ./movies_db/sql_scripts:/docker-entrypoint-initdb.d

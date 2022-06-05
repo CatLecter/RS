@@ -4,8 +4,8 @@ services:
     image: postgres:14.3-bullseye
     env_file:
       - ./movies_db/.env
-    expose:
-      - 5432
+    ports:
+      - "5432:5432"
     networks:
       - net
     volumes:

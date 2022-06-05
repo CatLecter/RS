@@ -13,14 +13,14 @@ router = APIRouter()
 logger = logging.getLogger(__name__)
 
 
-@router.post("/movies/{movie_id}/rating")
+@router.post("/movies/{movie_uuid}/rating")
 async def process_like_message(
     msg: RatingMessage,
     movie_uuid: UUID,
     request: Request,
     rating_service: RatingService = Depends(get_rating_service),
 ):
-    """Like a movie."""
+    """Rating a movie."""
     value = {
         "user_uuid": request.state.user_uuid,
         "movie_uuid": movie_uuid,

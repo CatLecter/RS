@@ -1,24 +1,28 @@
 import asyncio
+import os
 from dataclasses import dataclass
 from random import choices, randint, uniform
 from typing import Optional
-from uuid import UUID, uuid4
+from uuid import UUID
 
+import psycopg2
 from aiohttp import ClientSession
-from aiohttp.client_exceptions import (
-    ClientPayloadError,
-    ContentTypeError,
-    ServerDisconnectedError,
-)
+from aiohttp.client_exceptions import (ClientPayloadError, ContentTypeError,
+                                       ServerDisconnectedError)
 from alive_progress import alive_bar
 from backoff import expo, on_exception
+from dotenv import find_dotenv, load_dotenv
 from faker import Faker
 from loguru import logger
+from psycopg2.extensions import connection as _connection
+from psycopg2.extras import DictCursor
 from sqlalchemy.orm import Session
 from toolz import partition
 
 import event_generator.db as db
 from event_generator.models import LoginUsers, User
+
+load_dotenv(find_dotenv())
 
 
 def generate_users(number_of_users: int = 10) -> tuple[User, ...]:
@@ -228,10 +232,29 @@ def make_events(
     return loop.run_until_complete(make_users_events(data, auth_token, name))
 
 
-def get_uuid_films(amount: Optional[int] = 10) -> tuple[UUID, ...]:
+def get_uuid_films(amount: Optional[int] = 10) -> tuple:
+    dsl = {
+        "dbname": os.environ.get("DB_NAME"),
+        "user": os.environ.get("DB_USER"),
+        "password": os.environ.get("DB_PASSWORD"),
+        "host": os.environ.get("DB_HOST"),
+        "port": os.environ.get("DB_PORT"),
+        "options": "-c search_path=content",
+    }
     if amount is None:
         amount = 10
-    return tuple(uuid4() for _ in range(amount))
+    pg_conn: _connection = psycopg2.connect(**dsl, cursor_factory=DictCursor)
+    try:
+        with pg_conn:
+            cursor = pg_conn.cursor()
+            cursor.execute(
+                "SELECT id FROM content.film_work ORDER BY random() LIMIT %s",
+                (amount,),
+            )
+            result = (str(*_) for _ in cursor.fetchall())
+            return tuple(result)
+    finally:
+        pg_conn.close()
 
 
 def generate_rating_event(film_id: UUID) -> dict:

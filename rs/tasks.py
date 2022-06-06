@@ -8,6 +8,7 @@ from config import TABLES
 from config import config as cfg
 from config import log_config
 from getter import EventGetter
+from loader import Loader
 from loguru import logger
 from models import PersonalRecommendation
 from preparer import processing
@@ -52,7 +53,7 @@ def preparer(raw_data: dict) -> tuple:
 
 @celery_app.task
 def filtering(
-    bookmarks: list, languages: list, ratings: list, views: list, watched: list
+    bookmarks: list, ratings: list, views: list, watched: list
 ) -> List[PersonalRecommendation]:
     """Задача коллаборативной фильтрации. Возвращает список моделей
     PersonalRecommendation для дальнейшей их загрузки в БД.
@@ -66,6 +67,19 @@ def filtering(
 
 
 @celery_app.task
+def loader(movies: List[PersonalRecommendation]) -> None:
+    """Задача загрузки сгенерированных моделью данных в БД."""
+
+    try:
+        service = Loader(host=f"{cfg.rs_db_host}:{cfg.rs_db_port}")
+        service.create_index()
+        if movies:
+            service.load(movies)
+    except Exception as e:
+        logger.exception(e)
+
+
+@celery_app.task
 def rs() -> None:
     """Конвейер последовательно выполняемых задач."""
 
@@ -73,6 +87,7 @@ def rs() -> None:
         getter.s(),
         preparer.s(),
         filtering.s(),
+        loader.s(),
     ).delay()
 
 

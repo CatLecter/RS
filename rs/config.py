@@ -9,9 +9,11 @@ class Config(BaseSettings):
     ch_host: str = "clickhouse"
     ch_port: int = 8123
     for_period: int = 14
+    rs_db_host: str = "rs_db"
+    rs_db_port: int = 9200
 
 
-TABLES: list = ["bookmarks", "language", "ratings", "views", "watched"]
+TABLES: list = ["bookmarks", "ratings", "views", "watched"]
 
 
 log_config = {

@@ -199,7 +199,6 @@ services:
         condition: service_healthy
 
   clickhouse:
-#    image: altinity/clickhouse-server:21.8.15.15.altinitystable
     image: clickhouse/clickhouse-server:22.5.1.2079
     container_name: clickhouse
     hostname: clickhouse

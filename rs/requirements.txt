@@ -1,6 +1,7 @@
 backoff==2.0.1
 celery[amqp]==5.2.7
 clickhouse-driver==0.2.3
+elasticsearch==7.17.4
 pydantic==1.9.1
 requests==2.27.1
 python-dotenv==0.20.0

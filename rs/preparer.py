@@ -3,15 +3,7 @@ from json import loads
 import backoff
 from config import TABLES, log_config
 from loguru import logger
-from models import (
-    BookmarkEvent,
-    LanguageEvent,
-    Movie,
-    MovieBrief,
-    RatingEvent,
-    ViewEvent,
-    WatchEvent,
-)
+from models import BookmarkEvent, Movie, MovieBrief, RatingEvent, ViewEvent, WatchEvent
 from urllib3 import PoolManager
 from urllib3.exceptions import HTTPError
 
@@ -40,7 +32,6 @@ def get_movie(movie_uuid: str):
 
 def processing(data: dict) -> tuple:
     bookmarks: list = []
-    languages: list = []
     ratings: list = []
     views: list = []
     watched: list = []
@@ -55,17 +46,6 @@ def processing(data: dict) -> tuple:
                     bookmarked=event[3],
                 )
                 bookmarks.append(bookmark.dict())
-        elif table == "language":
-            for event in data[table]:
-                movie = get_movie(movie_uuid=event[1])
-                language = LanguageEvent(
-                    user_uuid=event[0],
-                    movie=movie,
-                    datetime=event[2],
-                    language_movie=event[3],
-                    language_client=event[4],
-                )
-                languages.append(language.dict())
         elif table == "ratings":
             for event in data[table]:
                 movie = get_movie(movie_uuid=event[1])
@@ -96,4 +76,4 @@ def processing(data: dict) -> tuple:
                     added=event[3],
                 )
                 watched.append(watch.dict())
-    return bookmarks, languages, ratings, views, watched
+    return bookmarks, ratings, views, watched

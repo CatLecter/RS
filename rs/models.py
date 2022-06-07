@@ -43,11 +43,6 @@ class WatchEvent(MixinEvent):
     added: Optional[bool]
 
 
-class LanguageEvent(MixinEvent):
-    language_movie: str
-    language_client: str
-
-
 class PersonBrief(MixinModel):
     """Персона фильма (основная информация)."""
 
@@ -71,4 +66,4 @@ class PersonalRecommendation(BaseModel):
     """
 
     user_uuid: UUID
-    movies: List[Movie]
+    movies: List[UUID]

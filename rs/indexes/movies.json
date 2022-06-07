@@ -46,13 +46,7 @@
         "type": "keyword"
       },
       "movies": {
-        "type": "nested",
-        "dynamic": "strict",
-        "properties": {
-          "uuid": {
-            "type": "keyword"
-          }
-        }
+        "type": "keyword"
       }
     }
   }

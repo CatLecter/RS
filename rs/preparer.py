@@ -1,7 +1,10 @@
 from json import loads
 
 import backoff
-from config import TABLES, log_config
+from cache import Cache
+from config import TABLES
+from config import config as cfg
+from config import log_config
 from loguru import logger
 from models import BookmarkEvent, Movie, MovieBrief, RatingEvent, ViewEvent, WatchEvent
 from urllib3 import PoolManager
@@ -13,19 +16,25 @@ logger.add(**log_config)
 @backoff.on_exception(backoff.expo, HTTPError, max_tries=3)
 def get_movie(movie_uuid: str):
     try:
+        cache = Cache(host=cfg.cache_host, port=cfg.cache_port)
         http = PoolManager()
-        movie = http.request("GET", f"http://10.5.0.1/api/v1/films/{movie_uuid}")
-        if movie.status == 200:
-            movie = Movie(**loads(movie.data.decode("UTF-8")))
-            genres = [genre["name"] for genre in movie.dict()["genres"]]
-            return MovieBrief(
-                uuid=movie.uuid,
-                genres=genres,
+        cache_movie = cache.get(key=movie_uuid)
+        if cache_movie:
+            _movie = Movie(**cache_movie)
+            _genres = [genre["name"] for genre in _movie.dict()["genres"]]
+            return MovieBrief(uuid=_movie.uuid, genres=_genres)
+        if not cache_movie:
+            movie_from_api = http.request(
+                "GET",
+                f"http://10.5.0.1/api/v1/films/{movie_uuid}",
             )
-        else:
-            return MovieBrief(
-                uuid=movie_uuid,
-            )
+            if movie_from_api.status == 200:
+                movie = Movie(**loads(movie_from_api.data.decode("UTF-8")))
+                cache.set(key=str(movie.uuid), value=movie.dict())
+                genres = [genre["name"] for genre in movie.dict()["genres"]]
+                return MovieBrief(uuid=movie.uuid, genres=genres)
+            else:
+                return MovieBrief(uuid=movie_uuid)
     except HTTPError:
         return MovieBrief(uuid=movie_uuid)
 

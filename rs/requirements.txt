@@ -3,6 +3,7 @@ celery[amqp]==5.2.7
 clickhouse-driver==0.2.3
 elasticsearch==7.17.4
 pydantic==1.9.1
+redis==4.3.3
 requests==2.27.1
 python-dotenv==0.20.0
 loguru==0.6.0

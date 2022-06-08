@@ -308,7 +308,7 @@ def generate_events(
 
     id_films = get_uuid_films(numbers_films)
 
-    logger.warning(
+    logger.info(
         f"{len(auth_users) * len(id_films) * number_events} events will be processed!"
     )
     with alive_bar(

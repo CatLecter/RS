@@ -51,19 +51,19 @@ def preparer(raw_data: dict) -> tuple:
             logger.exception(e)
 
 
-@celery_app.task
-def filtering(
-    bookmarks: list, ratings: list, views: list, watched: list
-) -> List[PersonalRecommendation]:
-    """Задача коллаборативной фильтрации. Возвращает список моделей
-    PersonalRecommendation для дальнейшей их загрузки в БД.
-    """
-
-    try:
-        """Сюда должна быть интегрирована модель из LightFM."""
-        pass
-    except Exception as e:
-        logger.exception(e)
+# @celery_app.task
+# def filtering(
+#     bookmarks: list, ratings: list, views: list, watched: list
+# ) -> List[PersonalRecommendation]:
+#     """Задача коллаборативной фильтрации. Возвращает список моделей
+#     PersonalRecommendation для дальнейшей их загрузки в БД.
+#     """
+#
+#     try:
+#         """Сюда должна быть интегрирована модель из LightFM."""
+#         pass
+#     except Exception as e:
+#         logger.exception(e)
 
 
 @celery_app.task
@@ -86,7 +86,7 @@ def rs() -> None:
     chain(
         getter.s(),
         preparer.s(),
-        filtering.s(),
+        # filtering.s(),
         loader.s(),
     ).delay()
 
@@ -95,4 +95,4 @@ def rs() -> None:
 def setup_periodic_taskc(sender, **kwargs):
     """Планировщик запуска рекомендательной системы (раз в 1 минуту для теста)."""
 
-    sender.add_periodic_task(crontab(minute="*/4"), rs.s())
+    sender.add_periodic_task(crontab(minute="*/1"), rs.s())

@@ -11,6 +11,8 @@ class Config(BaseSettings):
     for_period: int = 14
     rs_db_host: str = "rs_db"
     rs_db_port: int = 9200
+    cache_host: str = "rs_cache"
+    cache_port: int = 6379
 
 
 TABLES: list = ["bookmarks", "ratings", "views", "watched"]

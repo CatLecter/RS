@@ -1,5 +1,4 @@
 import json
-import logging.config
 from typing import List
 
 import pandas as pd
@@ -13,26 +12,27 @@ logger.add(**log_config)
 
 
 def prediction_all(data: tuple) -> List[PersonalRecommendation]:
-    def filter_multiple_occure(data: list, field: str) -> list:
+    def filter_multiple_occure(data_to_filter: list, field: str) -> list:
+        data_to_filter = sorted(data_to_filter, key=lambda d: d[field])
         result = []
         i = 0
-        while i < len(data) - 1:
-            if data[i][field] == data[i + 1][field]:
-                res = data[i]
-                while res[field] == data[i + 1][field]:
-                    if res['datetime'] < data[i + 1]['datetime']:
-                        res = data[i + 1]
+        while i < len(data_to_filter) - 1:
+            if data_to_filter[i][field] == data_to_filter[i + 1][field]:
+                res = data_to_filter[i]
+                while res[field] == data_to_filter[i + 1][field]:
+                    if res['datetime'] < data_to_filter[i + 1]['datetime']:
+                        res = data_to_filter[i + 1]
                     i += 1
-                    if i == len(data) - 1:
+                    if i == len(data_to_filter) - 1:
                         break
                 result.append(res)
             else:
-                result.append(data[i])
-                if i == len(data) - 2:
-                    result.append(data[i + 1])
+                result.append(data_to_filter[i])
+                if i == len(data_to_filter) - 2:
+                    result.append(data_to_filter[i + 1])
             i += 1
-        if i == len(data) - 1:
-            result.append(data[i])
+        if i == len(data_to_filter) - 1:
+            result.append(data_to_filter[i])
         return result
 
     def create_matrix(dataset: pd.DataFrame, col_value: str, col1: str, col2: str,
@@ -57,6 +57,7 @@ def prediction_all(data: tuple) -> List[PersonalRecommendation]:
                 reslist[2].append(event['rating'])
         return reslist
 
+
     def user_prediction(user_id, model, user_id_mapping, movie_numbers, movie_ids):
         # Предсказание для конкретного пользователя
         movie_nums = [i for i in range(0, movie_numbers)]
@@ -71,9 +72,16 @@ def prediction_all(data: tuple) -> List[PersonalRecommendation]:
         return {'user_uuid': user_id, 'movies': movies}
 
     bookmarks, ratings, views, watched = data
+    logger.info('Принято {} записей о рейтинге, {} закладок'.format(len(ratings),len(bookmarks)))
     # Создаем матрицу user-movies
     # Оставляем только последние отметки
+
+    a=set()
+    for event in ratings:
+        a.add(event['user_uuid'])
+    logger.info('Уникальных пользователей {}'.format(len(a)))
     user_movie_rating = user_movie_columns(filter_multiple_occure(ratings, 'user_uuid'))
+    logger.info('Отфильтровано {} записей о рейтинге'.format(len(user_movie_rating[0])))
     user_movie_rating_pd = pd.DataFrame(user_movie_rating,
                                         index=['user_id', 'movie_id', 'rating']).T
     user_id_mapping = {id: i for i, id in
@@ -85,7 +93,8 @@ def prediction_all(data: tuple) -> List[PersonalRecommendation]:
                                              'movie_id', user_id_mapping,
                                              movie_id_mapping)
 
-    #
+    #Создаем матрицу item_features
+    ...
 
     model = LightFM(loss='warp')
     model.fit(interactions=user_movie_rating_matrix, epochs=2,

@@ -18,7 +18,7 @@ class FastJsonModel(BaseModel):
         json_dumps = orjson_dumps
 
 
-class MixinModel(BaseModel):
+class MixinModel(FastJsonModel):
     uuid: UUID
 
 
@@ -34,7 +34,7 @@ class PersonBrief(MixinModel):
     full_name: str
 
 
-class Movie(FastJsonModel):
+class Movie(MovieBrief):
     """Фильм (подробная информация)."""
 
     title: str

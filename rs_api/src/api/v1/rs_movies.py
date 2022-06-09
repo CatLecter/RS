@@ -1,13 +1,11 @@
 from http import HTTPStatus
 from json import loads
-from pprint import pp
 from uuid import UUID
 
 import backoff
 from db.elastic import ElasticSearchEngine, get_es_search
-from fastapi import APIRouter, Depends, HTTPException, Query
-from models.rs_models import (BookmarkEvent, Movie, MovieBrief, RatingEvent, ViewEvent,
-                              WatchEvent)
+from fastapi import APIRouter
+from models.rs_models import Movie
 from urllib3 import PoolManager
 from urllib3.exceptions import HTTPError
 
@@ -19,15 +17,11 @@ def get_movie(movie_uuid: str):
     try:
         http = PoolManager()
         movie = http.request("GET", f"http://10.5.0.1/api/v1/films/{movie_uuid}")
-        print(movie)
         if movie.status == 200:
-            pp(loads(movie.data.decode("UTF-8")))
             movie = Movie(**loads(movie.data.decode("UTF-8")))
-
             return movie
-
     except HTTPError:
-        logger.error(HTTPError)
+        pass
 
 
 @router.get(

@@ -26,7 +26,7 @@ docker-compose exec auth flask loaddata
 ```
 python -m event_generator --help
 ```
-Пример использования
+Пример использования (необходимо запустить после поднятия контейнеров и дождаться пока сервис rs обработает данные)
 ```
 python -m event_generator -E2 -U10 -F10
 ```
@@ -39,3 +39,10 @@ python -m event_generator -E2 -U10 -F10
 - Auth Redoc: http://0.0.0.0/redoc-ui
 - Панель Kafdrop: http://0.0.0.0:19000/
 - Панель RabbitMQ: http://0.0.0.0:15672/#/
+
+### Основная ссылка:
+- Получение списка рекомендованных фильмов по UUID пользователя: http://0.0.0.0/rs/api/openapi#/
+
+### Примечание:
+UUID пользователя для тестирования можно получить из
+базы данных rs_db перейдя по ссылке: http://0.0.0.0:9200/movies/_search

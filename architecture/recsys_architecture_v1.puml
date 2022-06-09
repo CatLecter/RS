@@ -14,7 +14,7 @@ rectangle APIGateway
 actor Клиент as Client
 component FastAPI
 database DB <<Хранение рекомендаций на неделю>>
-database Cache <<Кэш запросов>>
+database Cache <<Кэш запросов\n(доп. задача)>> #orchid
 node SearchApi
 database ClickHouse <<Хранение событий пользователей>>
 node RSEngine <<Рекомендательная система>> {
@@ -23,9 +23,10 @@ node RSEngine <<Рекомендательная система>> {
     rectangle Loader <<Загружает наборы \n рекомендованных фильмов в DB>>
     rectangle CollaborativeFiltering <<Делает \n рекомендовации фильмов>>
 }
-node FilterByPopularity <<Популярные фильмы за неделю для "холодных" пользователей>> {
-    rectangle EventGetter2 <<Выгружает события>>
-    rectangle PopularFilms <<Подбирает популярные фильмы \n за неделю для "холодных" пользователей>>
+node <color:Black>FilterByPopularity</color> <<Популярные фильмы за неделю \
+     для "холодных" пользователей (доп. задача)>> #orchid {
+    rectangle EventGetter2 <<Выгружает события>> #bisque
+    rectangle PopularFilms <<Подбирает популярные фильмы \n за неделю для "холодных" пользователей>> #bisque
 }
 
 Client --> APIGateway: Запрос списка \n рекомендованных фильмов

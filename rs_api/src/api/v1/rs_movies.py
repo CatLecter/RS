@@ -1,6 +1,5 @@
 from http import HTTPStatus
 from json import loads
-from pprint import pp
 from uuid import UUID
 
 import backoff
@@ -21,13 +20,11 @@ def get_movie(movie_uuid: str):
         movie = http.request("GET", f"http://10.5.0.1/api/v1/films/{movie_uuid}")
 
         if movie.status == 200:
-            pp(loads(movie.data.decode("UTF-8")))
             movie = Movie(**loads(movie.data.decode("UTF-8")))
-
             return movie
 
     except HTTPError:
-        return
+        pass
 
 
 @router.get(

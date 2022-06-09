@@ -6,7 +6,6 @@ from uuid import UUID
 import backoff
 from db.elastic import ElasticSearchEngine, get_es_search
 from fastapi import APIRouter, Depends, HTTPException, Query
-from loguru import logger
 from models.rs_models import (
     BookmarkEvent,
     Movie,

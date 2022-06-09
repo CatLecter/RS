@@ -14,8 +14,8 @@ app = FastAPI(
     description=config.PROJECT_DESCRIPTION,
     version=config.PROJECT_VERSION,
     license_info=config.PROJECT_LICENSE_INFO,
-    docs_url="/api/openapi",
-    openapi_url="/api/openapi.json",
+    docs_url="/rs/api/openapi",
+    openapi_url="/rs/api/openapi.json",
     openapi_tags=config.PROJECT_TAGS_METADATA,
     default_response_class=ORJSONResponse,
 )

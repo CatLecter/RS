@@ -17,7 +17,7 @@ PROJECT_TAGS_METADATA = [
 NOT_FOUND_MESSAGE = "Объект не найден."
 
 # Настройки Elasticsearch
-ELASTIC_HOST = os.getenv("ELASTIC_HOST", "0.0.0.0")
+ELASTIC_HOST = os.getenv("ELASTIC_HOST", "rs_db")
 ELASTIC_PORT = int(os.getenv("ELASTIC_PORT", 9200))
 
 # Postgres

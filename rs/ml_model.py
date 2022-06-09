@@ -57,7 +57,6 @@ def prediction_all(data: tuple) -> List[PersonalRecommendation]:
                 reslist[2].append(event['rating'])
         return reslist
 
-
     def user_prediction(user_id, model, user_id_mapping, movie_numbers, movie_ids):
         # Предсказание для конкретного пользователя
         movie_nums = [i for i in range(0, movie_numbers)]
@@ -71,29 +70,58 @@ def prediction_all(data: tuple) -> List[PersonalRecommendation]:
         movies = tuple(i[1] for i in prediction_movie_id[:10])
         return {'user_uuid': user_id, 'movies': movies}
 
+    def enrich(pdd: pd.DataFrame, data_list: list, weight: int) -> pd.DataFrame:
+        data_list_filtered = filter_multiple_occure(data_list, 'user_uuid')
+        for event in data_list_filtered:
+            if not (event['movie']['uuid'] in pdd['movie_id'] and event[
+                'user_uuid'] in pdd['user_id']):
+                if 'added' in event:
+                    if event['added'] == True:
+                        pd.concat([pdd, pd.Series({'user_id': event['user_uuid'],
+                                                   'movie_id': event['movie']['uuid'],
+                                                   'rating': weight})], axis=0,
+                                  ignore_index=True)
+                    else:
+                        pd.concat([pdd, pd.Series({'user_id': event['user_uuid'],
+                                                   'movie_id': event['movie']['uuid'],
+                                                   'rating': weight - 2})], axis=0,
+                                  ignore_index=True)
+                if 'bookmarked' in event:
+                    if event['bookmarked'] == True:
+                        pd.concat([pdd, pd.Series({'user_id': event['user_uuid'],
+                                                   'movie_id': event['movie']['uuid'],
+                                                   'rating': weight})], axis=0,
+                                  ignore_index=True)
+        return pdd
+
     bookmarks, ratings, views, watched = data
-    logger.info('Принято {} записей о рейтинге, {} закладок'.format(len(ratings),len(bookmarks)))
+    logger.info('Принято {} записей о рейтинге, {} закладок'.format(len(ratings),
+                                                                    len(bookmarks)))
     # Создаем матрицу user-movies
     # Оставляем только последние отметки
-
-    a=set()
+    a = set()
     for event in ratings:
         a.add(event['user_uuid'])
     logger.info('Уникальных пользователей {}'.format(len(a)))
     user_movie_rating = user_movie_columns(filter_multiple_occure(ratings, 'user_uuid'))
     logger.info('Отфильтровано {} записей о рейтинге'.format(len(user_movie_rating[0])))
+    # Преобразуем в dataframe user-movies
     user_movie_rating_pd = pd.DataFrame(user_movie_rating,
                                         index=['user_id', 'movie_id', 'rating']).T
+    # Добавляем данные из bookmarker (нет рейтинга у фильма, но есть в закладках - добавляем рейтинг 6)
+    user_movie_rating_pd = enrich(user_movie_rating_pd, bookmarks, 6)
+    # Добавляем данные из watched (нет рейтинга у фильма, но фильм просмотрен до конца - добавляем рейтинг 7)
+    user_movie_rating_pd = enrich(user_movie_rating_pd, watched, 7)
+
     user_id_mapping = {id: i for i, id in
                        enumerate(user_movie_rating_pd['user_id'].unique())}
     movie_ids = user_movie_rating_pd['movie_id'].unique()
-    logger.debug('movie_ids', movie_ids[:3])
     movie_id_mapping = {id: i for i, id in enumerate(movie_ids)}
     user_movie_rating_matrix = create_matrix(user_movie_rating_pd, 'rating', 'user_id',
                                              'movie_id', user_id_mapping,
                                              movie_id_mapping)
 
-    #Создаем матрицу item_features
+    # Создаем матрицу item_features
     ...
 
     model = LightFM(loss='warp')

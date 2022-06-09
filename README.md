@@ -5,6 +5,7 @@
 - Установку Poetry согласно https://python-poetry.org/docs/#installation
 - Выполнить команду poetry install
 - Выполнить команду pre-commit install
+- Во всех директориях, где лежат файлы example.env создать аналогичные .env файлы.
 
 ### Для запуска сервиса выполнить:
 ```shell

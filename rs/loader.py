@@ -30,11 +30,11 @@ class Loader:
                     actions=[
                         {
                             "_index": "movies",
-                            "_id": pr.user_uuid,
-                            "user_uuid": pr.user_uuid,
-                            "movies": pr.movies,
+                            "_id": pr['user_uuid'],
+                            "user_uuid": pr['user_uuid'],
+                            "movies": list(pr['movies']),
                         }
-                        for pr in data
+                        for pr in (json.loads(data))
                     ],
                 )
             logger.info("Данные загружены в Elasticsearch.")

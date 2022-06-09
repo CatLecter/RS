@@ -12,13 +12,14 @@ from loader import Loader
 from loguru import logger
 from models import PersonalRecommendation
 from preparer import processing
+from ml_model import prediction_all
 
 logger.add(**log_config)
 
 celery_app = Celery(
     "tasks",
     broker=f"amqp://{cfg.broker_user}:{cfg.broker_password}@"
-    f"{cfg.broker_host}:{cfg.broker_port}",
+           f"{cfg.broker_host}:{cfg.broker_port}",
 )
 
 
@@ -52,16 +53,13 @@ def preparer(raw_data: dict) -> tuple:
 
 
 @celery_app.task
-def filtering(
-    bookmarks: list, ratings: list, views: list, watched: list
-) -> List[PersonalRecommendation]:
+def filtering(data: tuple) -> List[PersonalRecommendation]:
     """Задача коллаборативной фильтрации. Возвращает список моделей
     PersonalRecommendation для дальнейшей их загрузки в БД.
     """
 
     try:
-        """Сюда должна быть интегрирована модель из LightFM."""
-        pass
+        return prediction_all(data)
     except Exception as e:
         logger.exception(e)
 
@@ -95,4 +93,4 @@ def rs() -> None:
 def setup_periodic_taskc(sender, **kwargs):
     """Планировщик запуска рекомендательной системы (раз в 1 минуту для теста)."""
 
-    sender.add_periodic_task(crontab(minute="*/4"), rs.s())
+    sender.add_periodic_task(crontab(minute="*/1"), rs.s())

@@ -6,3 +6,6 @@ pydantic==1.9.1
 requests==2.27.1
 python-dotenv==0.20.0
 loguru==0.6.0
+pandas==1.4.2
+lightfm==1.16
+matplotlib==3.5.2

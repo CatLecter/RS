@@ -93,4 +93,4 @@ def rs() -> None:
 def setup_periodic_taskc(sender, **kwargs):
     """Планировщик запуска рекомендательной системы (раз в 1 минуту для теста)."""
 
-    sender.add_periodic_task(crontab(minute="*/1"), rs.s())
+    sender.add_periodic_task(crontab(minute="*/5"), rs.s())

@@ -14,7 +14,7 @@ logger.add(**log_config)
 def get_movie(movie_uuid: str):
     try:
         http = PoolManager()
-        movie = http.request("GET", f"http://10.5.0.1/api/v1/films/{movie_uuid}")
+        movie = http.request("GET", f"http://0.0.0.0/api/v1/films/{movie_uuid}")
         if movie.status == 200:
             movie = Movie(**loads(movie.data.decode("UTF-8")))
             genres = [genre["name"] for genre in movie.dict()["genres"]]

@@ -54,8 +54,7 @@ async def genre_details(
     films = films.get("movies")
     if films is None:
         return HTTPStatus.NOT_FOUND
-    pp(films)
     movies = []
     for film_id in films:
-        pp(film_id)
-        pp(get_movie(film_id))
+        movies.append(get_movie(film_id))
+    return movies

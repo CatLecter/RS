@@ -2,6 +2,7 @@ from json import loads
 from uuid import UUID
 
 import backoff
+from http import HTTPStatus
 from db.elastic import ElasticSearchEngine, get_es_search
 from fastapi import APIRouter, HTTPException
 from models.rs_models import (Movie)
@@ -39,13 +40,15 @@ async def genre_details(
     films = await es_ser.get_by_pk(table="movies", pk=person_uuid)
 
     if films is None:
-        raise HTTPException(status_code=404, detail="Пользователь не найден.")
+        raise HTTPException(
+            status_code=HTTPStatus.NOT_FOUND, detail="Пользователь не найден."
+        )
 
     movies = []
     for film_id in films["movies"]:
         film_info = get_movie(film_id)
         if film_info is None:
-            raise HTTPException(status_code=404, detail="фильм не найден.")
+            continue
 
         movies.append(film_info)
     return movies

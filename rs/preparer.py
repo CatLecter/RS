@@ -1,13 +1,11 @@
 from json import loads
 
 import backoff
-from config import TABLES, log_config
-from loguru import logger
-from models import BookmarkEvent, Movie, MovieBrief, RatingEvent, ViewEvent, WatchEvent
 from urllib3 import PoolManager
 from urllib3.exceptions import HTTPError
 
-logger.add(**log_config)
+from config import TABLES
+from models import BookmarkEvent, Movie, MovieBrief, RatingEvent, ViewEvent, WatchEvent
 
 
 @backoff.on_exception(backoff.expo, HTTPError, max_tries=3)

@@ -39,7 +39,7 @@ class Loader:
                 )
             logger.info("Данные загружены в Elasticsearch.")
         except ElasticsearchException as e:
-            logger.exception(e)
+            logger.exception(f"Ошибка ElasticSearch: {e}")
 
     @backoff.on_exception(
         backoff.expo, (ElasticsearchException, HTTPError), max_tries=10
@@ -55,4 +55,4 @@ class Loader:
                         ignore=400,
                     )
         except ElasticsearchException as e:
-            logger.exception(e)
+            logger.exception(f"Ошибка ElasticSearch: {e}")

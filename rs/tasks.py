@@ -4,15 +4,16 @@ from celery import Celery, chain
 from celery.schedules import crontab
 from clickhouse_driver import Client
 from clickhouse_driver.errors import Error
+from loguru import logger
+
 from config import TABLES
 from config import config as cfg
 from config import log_config
 from getter import EventGetter
 from loader import Loader
-from loguru import logger
+from ml_model import prediction_all
 from models import PersonalRecommendation
 from preparer import processing
-from ml_model import prediction_all
 
 logger.add(**log_config)
 
@@ -38,7 +39,7 @@ def getter() -> dict:
                 )
             return result
     except Error as e:
-        logger.exception(e)
+        logger.exception(f"Ошибка получения данных от ClickHouse: {e}")
 
 
 @celery_app.task
@@ -49,7 +50,7 @@ def preparer(raw_data: dict) -> tuple:
         try:
             return processing(raw_data)
         except Exception as e:
-            logger.exception(e)
+            logger.exception(f"Ошибка подготовки данных: {e}")
 
 
 @celery_app.task
@@ -61,7 +62,7 @@ def filtering(data: tuple) -> List[PersonalRecommendation]:
     try:
         return prediction_all(data)
     except Exception as e:
-        logger.exception(e)
+        logger.exception(f"Ошибка обработки данных: {e}")
 
 
 @celery_app.task
@@ -74,7 +75,7 @@ def loader(movies: List[PersonalRecommendation]) -> None:
         if movies:
             service.load(movies)
     except Exception as e:
-        logger.exception(e)
+        logger.exception(f"Ошибка загрузки данных в ElasticSearch: {e}")
 
 
 @celery_app.task

@@ -1,3 +1,5 @@
+import sys
+
 from pydantic import BaseSettings
 
 
@@ -17,7 +19,7 @@ TABLES: list = ["bookmarks", "ratings", "views", "watched"]
 
 
 log_config = {
-    "sink": "./log/rs.log",
+    "sink": sys.stderr,
     "format": "{time} {level} {message}",
     "level": "INFO",
     "rotation": "00:00",

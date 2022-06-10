@@ -38,7 +38,7 @@ rs_init:
 rs_up:
 	docker-compose up -d
 
-rs_spot:
+rs_stop:
 	docker-compose down
 
 generate_help:

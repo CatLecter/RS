@@ -4,9 +4,8 @@ from json import loads
 from uuid import UUID
 from typing import Literal
 
-from pprint import pp
 import backoff
-from aiohttp import ClientSession, TCPConnector
+from aiohttp import ClientSession, TCPConnector, ClientConnectionError
 from http import HTTPStatus
 from db.elastic import ElasticSearchEngine, get_es_search
 from fastapi import APIRouter, HTTPException
@@ -20,11 +19,13 @@ nest_asyncio.apply()
 
 async def get_movies(movie_uuid: UUID) -> Movie | None:
     url = f"http://10.5.0.1/api/v1/films/{movie_uuid}"
-    print(url)
-    async with ClientSession(connector=TCPConnector(verify_ssl=False)) as session:
-        async with session.get(url) as response:
-            if response.status == HTTPStatus.OK:
-                return Movie(**await response.json())
+    try:
+        async with ClientSession(connector=TCPConnector(verify_ssl=False)) as session:
+            async with session.get(url) as response:
+                if response.status == HTTPStatus.OK:
+                    return {movie_uuid: Movie(**await response.json())}
+    except ClientConnectionError:
+        return {movie_uuid: None}
 
 
 async def get_rec_movies(user_uuid: UUID) -> dict[UUID, list[UUID]]:
@@ -118,5 +119,14 @@ def rs_movie4users(
         movies_id += persons_and_films[user_id]
 
     movies_full_info = make_requests_by_uuid(uuid=movies_id, type_="movies")
+    full_films = {}
+    for el in movies_full_info:
+        full_films = full_films | el
 
-    return movies_full_info
+    out_response = {}
+    for user_id in persons_and_films:
+        out_response[user_id] = {}
+        for film_id in persons_and_films[user_id]:
+            out_response[user_id][film_id] = full_films[film_id]
+
+    return out_response

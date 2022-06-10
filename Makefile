@@ -35,6 +35,12 @@ rs_init:
 	docker-compose exec auth flask createsuperuser -u admin -e example@email.com -p password
 	docker-compose exec auth flask loaddata
 
+rs_up:
+	docker-compose up -d
+
+rs_spot:
+	docker-compose down
+
 generate_help:
 	python -m event_generator --help
 

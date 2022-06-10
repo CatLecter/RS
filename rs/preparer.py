@@ -28,7 +28,7 @@ def get_movie(movie_uuid: str):
         return MovieBrief(uuid=movie_uuid)
 
 
-def processing(data: dict) -> tuple:
+def processing(data: dict) -> tuple[list, list, list, list]:
     bookmarks: list = []
     ratings: list = []
     views: list = []

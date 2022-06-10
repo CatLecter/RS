@@ -40,8 +40,6 @@ class Loader:
             logger.info("Данные загружены в Elasticsearch.")
         except ElasticsearchException as e:
             logger.exception(e)
-        finally:
-            client.close()
 
     @backoff.on_exception(
         backoff.expo, (ElasticsearchException, HTTPError), max_tries=10
@@ -58,5 +56,3 @@ class Loader:
                     )
         except ElasticsearchException as e:
             logger.exception(e)
-        finally:
-            client.close()

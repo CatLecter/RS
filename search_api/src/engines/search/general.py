@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from typing import Dict, List, Optional
 
 from pydantic import BaseModel
 
@@ -9,7 +8,7 @@ class SearchResult(BaseModel):
     Ответ поискового движка.
     """
 
-    items: List[Dict]
+    items: list[dict]
     total: int = 0
 
 
@@ -18,11 +17,11 @@ class SearchParams(BaseModel):
     Параметры поискового запроса.
     """
 
-    query_fields: Optional[List[str]]
-    query_value: Optional[str]
-    sort_field: Optional[str]
-    filter_field: Optional[str]
-    filter_value: Optional[str]
+    query_fields: list[str] | None
+    query_value: str | None
+    sort_field: str | None
+    filter_field: str | None
+    filter_value: str | None
     page_number: int = 1
     page_size: int = 20
 
@@ -33,7 +32,7 @@ class SearchEngine(ABC):
     """
 
     @abstractmethod
-    async def get_by_pk(self, table: str, pk: str) -> Dict:
+    async def get_by_pk(self, table: str, pk: str) -> dict:
         """Возвращает объект по ключу."""
         pass
 

@@ -1,8 +1,9 @@
-backoff==2.0.1
+aiohttp==3.8.1
+backoff==2.1.2
 celery[amqp]==5.2.7
 clickhouse-driver==0.2.3
 elasticsearch==7.17.4
-httpx==0.23.0
+orjson==3.7.2
 pydantic==1.9.1
 requests==2.27.1
 python-dotenv==0.20.0

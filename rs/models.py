@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import List, Optional
+from typing import Optional
 from uuid import UUID
 
 from pydantic import BaseModel
@@ -55,9 +55,9 @@ class Movie(MovieBrief):
     title: str
     imdb_rating: Optional[float]
     description: Optional[str]
-    directors: List[PersonBrief]
-    writers: List[PersonBrief]
-    actors: List[PersonBrief]
+    directors: list[PersonBrief]
+    writers: list[PersonBrief]
+    actors: list[PersonBrief]
 
 
 class PersonalRecommendation(BaseModel):
@@ -66,4 +66,4 @@ class PersonalRecommendation(BaseModel):
     """
 
     user_uuid: UUID
-    movies: List[UUID]
+    movies: list[UUID]

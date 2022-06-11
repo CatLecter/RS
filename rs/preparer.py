@@ -1,30 +1,36 @@
+from http import HTTPStatus
+
+import aiohttp
 import backoff
-import httpx
+from aiohttp import ClientConnectionError, ClientError
 from config import TABLES
 from models import BookmarkEvent, Movie, MovieBrief, RatingEvent, ViewEvent, WatchEvent
-from urllib3.exceptions import HTTPError
+from orjson import loads
 
 
-@backoff.on_exception(backoff.expo, HTTPError, max_tries=3)
-def get_movie(movie_uuid: str):
+@backoff.on_exception(backoff.expo, ClientConnectionError, max_tries=3)
+async def get_movie(movie_uuid: str):
+    url = f"http://10.5.0.1/api/v1/films/{movie_uuid}"
     try:
-        movie = httpx.get(f"http://10.5.0.1/api/v1/films/{movie_uuid}")
-        if movie.status_code == httpx.codes.OK:
-            movie = Movie(**movie.json())
-            genres = [genre["name"] for genre in movie.dict()["genres"]]
-            return MovieBrief(
-                uuid=movie.uuid,
-                genres=genres,
-            )
-        else:
-            return MovieBrief(
-                uuid=movie_uuid,
-            )
-    except HTTPError:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as resp:
+                if resp.status == HTTPStatus.OK:
+                    _movie = await resp.text()
+                    movie = Movie(**loads(_movie))
+                    genres = [genre["name"] for genre in movie.dict()["genres"]]
+                    return MovieBrief(
+                        uuid=movie.uuid,
+                        genres=genres,
+                    )
+                else:
+                    return MovieBrief(
+                        uuid=movie_uuid,
+                    )
+    except ClientError:
         return MovieBrief(uuid=movie_uuid)
 
 
-def processing(data: dict) -> tuple[list, list, list, list]:
+async def processing(data: dict) -> tuple[list, list, list, list]:
     bookmarks: list = []
     ratings: list = []
     views: list = []
@@ -32,7 +38,7 @@ def processing(data: dict) -> tuple[list, list, list, list]:
     for table in TABLES:
         if table == "bookmarks":
             for event in data[table]:
-                movie = get_movie(movie_uuid=event[1])
+                movie = await get_movie(movie_uuid=event[1])
                 bookmark = BookmarkEvent(
                     user_uuid=event[0],
                     movie=movie,
@@ -42,7 +48,7 @@ def processing(data: dict) -> tuple[list, list, list, list]:
                 bookmarks.append(bookmark.dict())
         elif table == "ratings":
             for event in data[table]:
-                movie = get_movie(movie_uuid=event[1])
+                movie = await get_movie(movie_uuid=event[1])
                 rating = RatingEvent(
                     user_uuid=event[0],
                     movie=movie,
@@ -52,7 +58,7 @@ def processing(data: dict) -> tuple[list, list, list, list]:
                 ratings.append(rating.dict())
         elif table == "views":
             for event in data[table]:
-                movie = get_movie(movie_uuid=event[1])
+                movie = await get_movie(movie_uuid=event[1])
                 view = ViewEvent(
                     user_uuid=event[0],
                     movie=movie,
@@ -62,7 +68,7 @@ def processing(data: dict) -> tuple[list, list, list, list]:
                 views.append(view.dict())
         elif table == "watched":
             for event in data[table]:
-                movie = get_movie(movie_uuid=event[1])
+                movie = await get_movie(movie_uuid=event[1])
                 watch = WatchEvent(
                     user_uuid=event[0],
                     movie=movie,

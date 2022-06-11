@@ -30,9 +30,9 @@ class Loader:
                     actions=[
                         {
                             "_index": "movies",
-                            "_id": pr['user_uuid'],
-                            "user_uuid": pr['user_uuid'],
-                            "movies": list(pr['movies']),
+                            "_id": pr["user_uuid"],
+                            "user_uuid": pr["user_uuid"],
+                            "movies": list(pr["movies"]),
                         }
                         for pr in (json.loads(data))
                     ],

@@ -1,37 +1,39 @@
 import asyncio
-import nest_asyncio
-from json import loads
-from uuid import UUID
-from typing import Literal
-
-import backoff
-from httpx import AsyncClient, ConnectError
 from http import HTTPStatus
+from typing import Literal
+from uuid import UUID
+
+import aiohttp
+import backoff
+import nest_asyncio
+from aiohttp import ClientConnectionError, ClientError
 from db.elastic import ElasticSearchEngine, get_es_search
 from fastapi import APIRouter, HTTPException
-from models.rs_models import (Movie)
-from urllib3 import PoolManager
-from urllib3.exceptions import HTTPError
+from models.rs_models import Movie
+from orjson import loads
 
 router = APIRouter(prefix="/rs_movies", tags=["Рекомендованые Фильмы"])
 nest_asyncio.apply()
 
 
+@backoff.on_exception(backoff.expo, ClientConnectionError, max_tries=3)
 async def get_movies(movie_uuid: UUID) -> Movie | None:
     url = f"http://10.5.0.1/api/v1/films/{movie_uuid}"
-
     try:
-        async with AsyncClient() as client:
-            response = await client.get(url)
-            return {movie_uuid: Movie(response.json())}
-    except ConnectError:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as resp:
+                if resp.status == HTTPStatus.OK:
+                    movie = await resp.text()
+                    return {movie_uuid: Movie(**loads(movie))}
+    except ClientError:
         return {movie_uuid: None}
 
 
 async def get_rec_movies(user_uuid: UUID) -> dict[UUID, list[UUID]]:
     return {
-        user_uuid: await (ElasticSearchEngine(get_es_search())
-                          .get_by_pk(table="movies", pk=user_uuid))
+        user_uuid: await (
+            ElasticSearchEngine(get_es_search()).get_by_pk(table="movies", pk=user_uuid)
+        )
     }
 
 
@@ -45,39 +47,34 @@ async def get_request(uuid: list[UUID], type_: Literal["movies", "rs_films"]):
 
 
 def make_requests_by_uuid(
-    uuid: list[UUID],
-    type_: Literal["movies", "rs_films"]
+    uuid: list[UUID], type_: Literal["movies", "rs_films"]
 ) -> list:
     loop = asyncio.new_event_loop()
     return loop.run_until_complete(get_request(uuid=uuid, type_=type_))
 
 
-@backoff.on_exception(backoff.expo, HTTPError, max_tries=3)
-def get_movie(movie_uuid: str):
-    try:
-        http = PoolManager()
-        movie = http.request("GET", f"http://10.5.0.1/api/v1/films/{movie_uuid}")
-
-        if movie.status == 200:
-            movie = Movie(**loads(movie.data.decode("UTF-8")))
-            return movie
-
-    except HTTPError:
-        pass
+@backoff.on_exception(backoff.expo, ClientConnectionError, max_tries=3)
+async def get_movie(movie_uuid: str):
+    async with aiohttp.ClientSession() as session:
+        async with session.get(f"http://10.5.0.1/api/v1/films/{movie_uuid}") as resp:
+            if resp.status == HTTPStatus.OK:
+                movie = await resp.text()
+                return Movie(**loads(movie))
 
 
 @router.get(
-    path="/{person_uuid}",
+    path="/{user_uuid}",
     name="Рекомендация для пользователя.",
-    description="Получение детальной информации рекомендованых фильмов.",
-    response_model=list[Movie]
+    description="Получение детальной информации о фильмах рекомендованных "
+    "пользователю к просмотру по его UUID.",
+    response_model=list[Movie],
 )
 async def rs_movie4user(
-    person_uuid: UUID,
+    user_uuid: UUID,
 ):
     es_ser = ElasticSearchEngine(get_es_search())
 
-    films = await es_ser.get_by_pk(table="movies", pk=person_uuid)
+    films = await es_ser.get_by_pk(table="movies", pk=user_uuid)
 
     if films is None:
         raise HTTPException(
@@ -86,7 +83,7 @@ async def rs_movie4user(
 
     movies = []
     for film_id in films["movies"]:
-        film_info = get_movie(film_id)
+        film_info = await get_movie(film_id)
         if film_info is None:
             continue
 
@@ -95,14 +92,12 @@ async def rs_movie4user(
 
 
 @router.post(
-    path="/recommendation_movies",
-    name="Рекомендации для пользователей.",
-    description="Получение детальной информации рекомендованых фильмов пользователей.",
-    # response_model=dict[str, list[Movie]]
+    path="/users_list",
+    name="Рекомендации для списка пользователей.",
+    description="Получение детальной информации о рекомендациях для "
+    "нескольких пользвателей по списку их UUID.",
 )
-def rs_movie4users(
-    persons_uuid: list[UUID]
-):
+def rs_movie4users(persons_uuid: list[UUID]):
     persons_with_films = make_requests_by_uuid(uuid=persons_uuid, type_="rs_films")
 
     persons_and_films = {}
@@ -110,8 +105,8 @@ def rs_movie4users(
         persons_and_films = persons_and_films | el
 
     persons_and_films = {
-        user_uuid:
-            persons_and_films[user_uuid]['movies'] for user_uuid in persons_and_films
+        user_uuid: persons_and_films[user_uuid]["movies"]
+        for user_uuid in persons_and_films
     }
 
     movies_id = []

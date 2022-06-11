@@ -1,16 +1,16 @@
+import asyncio
 from typing import List
 
 from celery import Celery, chain
 from celery.schedules import crontab
 from clickhouse_driver import Client
 from clickhouse_driver.errors import Error
-from loguru import logger
-
 from config import TABLES
 from config import config as cfg
 from config import log_config
 from getter import EventGetter
 from loader import Loader
+from loguru import logger
 from ml_model import prediction_all
 from models import PersonalRecommendation
 from preparer import processing
@@ -20,7 +20,7 @@ logger.add(**log_config)
 celery_app = Celery(
     "tasks",
     broker=f"amqp://{cfg.broker_user}:{cfg.broker_password}@"
-           f"{cfg.broker_host}:{cfg.broker_port}",
+    f"{cfg.broker_host}:{cfg.broker_port}",
 )
 
 
@@ -48,7 +48,7 @@ def preparer(raw_data: dict) -> tuple:
 
     if raw_data:
         try:
-            return processing(raw_data)
+            return asyncio.run(processing(raw_data))
         except Exception as e:
             logger.exception(f"Ошибка подготовки данных: {e}")
 

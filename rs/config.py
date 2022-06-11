@@ -24,11 +24,7 @@ class MLConfig(BaseSettings):
 
 TABLES: list = ["bookmarks", "ratings", "views", "watched"]
 
-log_config = {
-    "sink": sys.stderr,
-    "format": "{time} {level} {message}",
-    "level": "INFO"
-}
+log_config = {"sink": sys.stderr, "format": "{time} {level} {message}", "level": "INFO"}
 
 config = Config()
 mlconfig = MLConfig()

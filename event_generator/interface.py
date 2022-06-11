@@ -7,8 +7,11 @@ from uuid import UUID
 
 import psycopg2
 from aiohttp import ClientSession
-from aiohttp.client_exceptions import (ClientPayloadError, ContentTypeError,
-                                       ServerDisconnectedError)
+from aiohttp.client_exceptions import (
+    ClientPayloadError,
+    ContentTypeError,
+    ServerDisconnectedError,
+)
 from alive_progress import alive_bar
 from backoff import expo, on_exception
 from dotenv import find_dotenv, load_dotenv
@@ -67,7 +70,7 @@ async def make_several_post_requests(url: str, params: dict) -> dict:
         async with session.post(url, json=params) as response:
 
             if response.status == 409:
-                logger.warning("Username or email is already taken!")
+                logger.info("Username or email is already taken!")
             elif response.status == 201:
                 logger.info(f'Success signup {params.get("username", "user")}')
             elif response.status == 200:

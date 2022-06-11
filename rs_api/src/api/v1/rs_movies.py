@@ -5,7 +5,7 @@ from uuid import UUID
 from typing import Literal
 
 import backoff
-from aiohttp import ClientSession, TCPConnector, ClientConnectionError
+from httpx import AsyncClient, ConnectError
 from http import HTTPStatus
 from db.elastic import ElasticSearchEngine, get_es_search
 from fastapi import APIRouter, HTTPException
@@ -19,12 +19,12 @@ nest_asyncio.apply()
 
 async def get_movies(movie_uuid: UUID) -> Movie | None:
     url = f"http://10.5.0.1/api/v1/films/{movie_uuid}"
+
     try:
-        async with ClientSession(connector=TCPConnector(verify_ssl=False)) as session:
-            async with session.get(url) as response:
-                if response.status == HTTPStatus.OK:
-                    return {movie_uuid: Movie(**await response.json())}
-    except ClientConnectionError:
+        async with AsyncClient() as client:
+            response = await client.get(url)
+            return {movie_uuid: Movie(response.json())}
+    except ConnectError:
         return {movie_uuid: None}
 
 

@@ -1,12 +1,11 @@
-from json import loads
 from uuid import UUID
 
 import backoff
+import httpx
 from db.elastic import ElasticSearchEngine, get_es_search
 from fastapi import APIRouter, HTTPException
-from models.rs_models import (Movie)
-from urllib3 import PoolManager
-from urllib3.exceptions import HTTPError
+from httpx import HTTPError
+from models.rs_models import Movie
 
 router = APIRouter(prefix="/rs_movies", tags=["Рекомендованые Фильмы"])
 
@@ -14,13 +13,10 @@ router = APIRouter(prefix="/rs_movies", tags=["Рекомендованые Фи
 @backoff.on_exception(backoff.expo, HTTPError, max_tries=3)
 def get_movie(movie_uuid: str):
     try:
-        http = PoolManager()
-        movie = http.request("GET", f"http://10.5.0.1/api/v1/films/{movie_uuid}")
-
-        if movie.status == 200:
-            movie = Movie(**loads(movie.data.decode("UTF-8")))
+        movie = httpx.get(f"http://10.5.0.1/api/v1/films/{movie_uuid}")
+        if movie.status_code == httpx.codes.OK:
+            movie = Movie(**movie.json())
             return movie
-
     except HTTPError:
         pass
 
@@ -29,7 +25,7 @@ def get_movie(movie_uuid: str):
     path="/{person_uuid}",
     name="Рекомендация для пользователя.",
     description="Получение детальной информации рекомендованых фильмов.",
-    response_model=list[Movie]
+    response_model=list[Movie],
 )
 async def genre_details(
     person_uuid: UUID,

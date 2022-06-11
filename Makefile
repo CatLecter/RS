@@ -23,7 +23,7 @@ create_env:
 	cp -f sqlite_to_postgres/example.env sqlite_to_postgres/.env
 	cp -f ugc/example.env ugc/.env
 
-rs_init:
+init:
 	python movies_admin/manage.py collectstatic --no-input --clear
 	docker-compose -f docker-compose.yml down -v
 	docker-compose -f docker-compose.yml up -d --build
@@ -35,14 +35,14 @@ rs_init:
 	docker-compose exec auth flask createsuperuser -u admin -e example@email.com -p password
 	docker-compose exec auth flask loaddata
 
-rs_up:
+up:
 	docker-compose up -d
 
-rs_stop:
+stop:
 	docker-compose down
 
-generate_help:
+gen_help:
 	python -m event_generator --help
 
-generate_data:
+gen_data:
 	python -m event_generator -E10 -U50 -F20

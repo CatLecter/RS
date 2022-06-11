@@ -10,24 +10,24 @@ make poetry_install
 ### Для первого запуска сервиса выполнить:
 ```shell
 make create_env
-make rs_init
+make init
 ```
 ### Модуль генерации событий от пользователей
 Документация:
 ```shell
-make generate_help
+make gen_help
 ```
 Генерация 10k событий:
 ```shell
-make generate_data
+make gen_data
 ```
 ### Для остановки сервиса выполнить:
 ```shell
-make rs_spot
+make spot
 ```
 ### Чтобы повторно запустить сервис выполнить:
 ```shell
-make rs_up
+make up
 ```
 ### Ссылки:
 - Панель администратора: http://0.0.0.0/admin/

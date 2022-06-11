@@ -1,20 +1,16 @@
-from json import loads
-
 import backoff
-from urllib3 import PoolManager
-from urllib3.exceptions import HTTPError
-
+import httpx
 from config import TABLES
 from models import BookmarkEvent, Movie, MovieBrief, RatingEvent, ViewEvent, WatchEvent
+from urllib3.exceptions import HTTPError
 
 
 @backoff.on_exception(backoff.expo, HTTPError, max_tries=3)
 def get_movie(movie_uuid: str):
     try:
-        http = PoolManager()
-        movie = http.request("GET", f"http://0.0.0.0/api/v1/films/{movie_uuid}")
-        if movie.status == 200:
-            movie = Movie(**loads(movie.data.decode("UTF-8")))
+        movie = httpx.get(f"http://10.5.0.1/api/v1/films/{movie_uuid}")
+        if movie.status_code == httpx.codes.OK:
+            movie = Movie(**movie.json())
             genres = [genre["name"] for genre in movie.dict()["genres"]]
             return MovieBrief(
                 uuid=movie.uuid,

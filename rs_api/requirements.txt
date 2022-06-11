@@ -4,6 +4,7 @@ backoff==2.0.1
 elasticsearch[async]==7.17.3
 elasticsearch_dsl==7.4.0
 fastapi==0.78.0
+httpx==0.23.0
 orjson==3.7.1
 pydantic==1.9.1
 pymongo==4.1.1

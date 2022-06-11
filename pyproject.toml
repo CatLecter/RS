@@ -32,6 +32,7 @@ aiochclient = "^2.1.0"
 clickhouse-driver = "^0.2.3"
 requests = "^2.27.1"
 toolz = "^0.11.2"
+httpx = "^0.23.0"
 
 [tool.poetry.dev-dependencies]
 black = "^22.3.0"

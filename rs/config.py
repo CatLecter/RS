@@ -13,8 +13,14 @@ class Config(BaseSettings):
     rs_db_port: int = 9200
 
 
-TABLES: list = ["bookmarks", "ratings", "views", "watched"]
+class MLConfig(BaseSettings):
+    epochs: int = 2
+    num_threads: int = 2
+    brating: int = 6
+    wrating: int = 7
 
+
+TABLES: list = ["bookmarks", "ratings", "views", "watched"]
 
 log_config = {
     "sink": "./log/rs.log",
@@ -25,3 +31,4 @@ log_config = {
 }
 
 config = Config()
+mlconfig = MLConfig()

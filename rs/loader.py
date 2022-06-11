@@ -30,18 +30,16 @@ class Loader:
                     actions=[
                         {
                             "_index": "movies",
-                            "_id": pr['user_uuid'],
-                            "user_uuid": pr['user_uuid'],
-                            "movies": list(pr['movies']),
+                            "_id": pr["user_uuid"],
+                            "user_uuid": pr["user_uuid"],
+                            "movies": list(pr["movies"]),
                         }
                         for pr in (json.loads(data))
                     ],
                 )
             logger.info("Данные загружены в Elasticsearch.")
         except ElasticsearchException as e:
-            logger.exception(e)
-        finally:
-            client.close()
+            logger.exception(f"Ошибка ElasticSearch: {e}")
 
     @backoff.on_exception(
         backoff.expo, (ElasticsearchException, HTTPError), max_tries=10
@@ -57,6 +55,4 @@ class Loader:
                         ignore=400,
                     )
         except ElasticsearchException as e:
-            logger.exception(e)
-        finally:
-            client.close()
+            logger.exception(f"Ошибка ElasticSearch: {e}")

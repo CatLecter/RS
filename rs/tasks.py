@@ -1,3 +1,4 @@
+import asyncio
 from typing import List
 
 from celery import Celery, chain
@@ -10,16 +11,16 @@ from config import log_config
 from getter import EventGetter
 from loader import Loader
 from loguru import logger
+from ml_model import prediction_all
 from models import PersonalRecommendation
 from preparer import processing
-from ml_model import prediction_all
 
 logger.add(**log_config)
 
 celery_app = Celery(
     "tasks",
     broker=f"amqp://{cfg.broker_user}:{cfg.broker_password}@"
-           f"{cfg.broker_host}:{cfg.broker_port}",
+    f"{cfg.broker_host}:{cfg.broker_port}",
 )
 
 
@@ -38,7 +39,7 @@ def getter() -> dict:
                 )
             return result
     except Error as e:
-        logger.exception(e)
+        logger.exception(f"Ошибка получения данных от ClickHouse: {e}")
 
 
 @celery_app.task
@@ -47,9 +48,9 @@ def preparer(raw_data: dict) -> tuple:
 
     if raw_data:
         try:
-            return processing(raw_data)
+            return asyncio.run(processing(raw_data))
         except Exception as e:
-            logger.exception(e)
+            logger.exception(f"Ошибка подготовки данных: {e}")
 
 
 @celery_app.task
@@ -61,7 +62,7 @@ def filtering(data: tuple) -> List[PersonalRecommendation]:
     try:
         return prediction_all(data)
     except Exception as e:
-        logger.exception(e)
+        logger.exception(f"Ошибка обработки данных: {e}")
 
 
 @celery_app.task
@@ -74,7 +75,7 @@ def loader(movies: List[PersonalRecommendation]) -> None:
         if movies:
             service.load(movies)
     except Exception as e:
-        logger.exception(e)
+        logger.exception(f"Ошибка загрузки данных в ElasticSearch: {e}")
 
 
 @celery_app.task

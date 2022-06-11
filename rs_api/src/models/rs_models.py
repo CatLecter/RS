@@ -1,9 +1,9 @@
 from datetime import datetime
-from typing import Generic, List, Optional, TypeVar
+from typing import Optional
 from uuid import UUID
 
 import orjson
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 
 def orjson_dumps(v, *, default):
@@ -40,9 +40,9 @@ class Movie(MovieBrief):
     title: str
     imdb_rating: Optional[float]
     description: Optional[str]
-    directors: List[PersonBrief]
-    writers: List[PersonBrief]
-    actors: List[PersonBrief]
+    directors: list[PersonBrief]
+    writers: list[PersonBrief]
+    actors: list[PersonBrief]
 
 
 class MixinEvent(BaseModel):
@@ -73,4 +73,4 @@ class PersonalRecommendation(BaseModel):
     """
 
     user_uuid: UUID
-    movies: List[UUID]
+    movies: list[UUID]

@@ -1,3 +1,5 @@
+import sys
+
 from pydantic import BaseSettings
 
 
@@ -22,13 +24,7 @@ class MLConfig(BaseSettings):
 
 TABLES: list = ["bookmarks", "ratings", "views", "watched"]
 
-log_config = {
-    "sink": "./log/rs.log",
-    "format": "{time} {level} {message}",
-    "level": "INFO",
-    "rotation": "00:00",
-    "compression": "zip",
-}
+log_config = {"sink": sys.stderr, "format": "{time} {level} {message}", "level": "INFO"}
 
 config = Config()
 mlconfig = MLConfig()

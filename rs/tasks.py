@@ -92,6 +92,6 @@ def rs() -> None:
 
 @celery_app.on_after_configure.connect
 def setup_periodic_taskc(sender, **kwargs):
-    """Планировщик запуска рекомендательной системы (раз в 1 минуту для теста)."""
+    """Планировщик запуска рекомендательной системы (раз в 5 минуту для теста)."""
 
     sender.add_periodic_task(crontab(minute="*/5"), rs.s())

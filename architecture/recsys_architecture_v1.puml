@@ -1,7 +1,7 @@
 @startuml
 !theme materia
 skinparam componentStyle uml1
-skinparam backgroundColor MOTIVATION
+skinparam backgroundColor White
 skinparam linetype ortho
 skinparam actorStyle awesome
 skinparam defaultTextAlignment center
